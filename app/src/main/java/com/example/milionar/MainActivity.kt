@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -32,12 +33,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MilionarTheme {
-                var selectedDifficulty by remember { mutableStateOf<String?>(null) }
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    MilionarApp(viewModel = ThemeSelectionViewModel())
+                    /*
                     DifficultySelection(
                         selectedDifficulty = selectedDifficulty.toString(),
                         onDifficultySelected = { newDifficulty ->
@@ -45,6 +47,7 @@ class MainActivity : ComponentActivity() {
                             println("Selected Difficulty: $newDifficulty")
                         }
                     )
+                    */
                 }
             }
         }
@@ -86,7 +89,13 @@ fun HomeScreenPreview() {
     }
 }
 */
-
+@Preview(showBackground = true)
+@Composable
+fun CompoButton(onClick: () -> Unit = {}) {
+    Button(onClick = onClick) {
+        Text("Start")
+    }
+}
 @Composable
 fun DifficultySelection(selectedDifficulty: String, onDifficultySelected: (String) -> Unit){
     Column {
