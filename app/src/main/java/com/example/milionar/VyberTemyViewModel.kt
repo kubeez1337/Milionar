@@ -33,6 +33,10 @@ class ThemeSelectionViewModel(scoreManager: ScoreManager) : ViewModel() {
     val scoreboard = scoreManager
     private val _showScore = MutableStateFlow<Boolean>(true)
     val showScore: StateFlow<Boolean> = _showScore.asStateFlow()
+    private val _isTimerRunning = MutableStateFlow<Boolean>(false)
+    val isTimerRunning: StateFlow<Boolean> = _isTimerRunning.asStateFlow()
+    private val _timeRemaining = MutableStateFlow<Int>(15)
+    val timeRemaining: StateFlow<Int> = _timeRemaining.asStateFlow()
 
     fun setTheme(theme: String) {
         _selectedTheme.value = theme
@@ -99,6 +103,15 @@ class ThemeSelectionViewModel(scoreManager: ScoreManager) : ViewModel() {
     }
     fun setHideScore(){
         _showScore.value = false
+    }
+    fun setTimerRunning(bool: Boolean){
+        _isTimerRunning.value = bool
+    }
+    fun resetTimeRemaining(){
+        _timeRemaining.value = 15
+    }
+    fun decrementTimeRemaining(){
+        _timeRemaining.value--
     }
 
 }

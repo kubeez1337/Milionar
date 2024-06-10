@@ -34,7 +34,6 @@ fun ThemeSelectionScreen(
     val selectedTheme by viewModel.selectedTheme.collectAsState()
     val peachPink = Color(0xFFFFDAB9)
     val themes = listOf("Matematika", "Science", "History", "Geography", "Random")
-
     Column(modifier = Modifier
         .fillMaxSize()
         .background(peachPink)

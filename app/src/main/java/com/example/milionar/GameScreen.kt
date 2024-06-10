@@ -4,6 +4,8 @@ package com.example.milionar
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -13,11 +15,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
@@ -25,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.delay
 
 /*
 TODO
@@ -56,7 +64,45 @@ fun GameScreen(
     val wasClicked by viewModel.wasclicked.collectAsState()
     val fieldToShow by viewModel.scoreField.collectAsState()
     val meno by viewModel.meno.collectAsState()
+    val timeRemaining by viewModel.timeRemaining.collectAsState()
+    val isTimerRunning by viewModel.isTimerRunning.collectAsState()
+    var startTime = System.currentTimeMillis()
+    var animationProgress by remember { mutableStateOf(1f) }
+    LaunchedEffect(key1 = otazka) {
+        viewModel.setTimerRunning(true)
+        viewModel.resetTimeRemaining()
+        startTime = System.currentTimeMillis()
+        animationProgress = 1f
+        var secondsElapsed = 0
+        while (viewModel.timeRemaining.value > 0 && viewModel.isTimerRunning.value) {
+            delay(1000L)
+            secondsElapsed++
+            val elapsedMillis = System.currentTimeMillis() - startTime
+            animationProgress = 1f - (elapsedMillis.toFloat() / 15000f)
+            animationProgress = animationProgress.coerceAtLeast(0f)
+            viewModel.decrementTimeRemaining()
+            if (viewModel.timeRemaining.value == 0 && viewModel.isTimerRunning.value) {
+                viewModel.click()
+                viewModel.fieldToShow()
+                viewModel.setTimerRunning(false)
+                break
+            }
+        }
+
+
+
+    }
     Column(modifier = Modifier.fillMaxSize()) {
+
+        Spacer(modifier = Modifier.height(56.dp))
+        LinearProgressIndicator(
+            progress = animationProgress,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        )
+
+
         Spacer(modifier = Modifier.height(60.dp))
 
         Column(
@@ -68,8 +114,8 @@ fun GameScreen(
                 text = otazka.question,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 fontSize = 20.sp,
-                maxLines = Int.MAX_VALUE, // povoliť zalomenie do viacerých riadkov
-                overflow = TextOverflow.Visible // zabezpečiť viditeľnosť celého textu
+                maxLines = Int.MAX_VALUE,
+                overflow = TextOverflow.Visible
             )
         }
 
@@ -88,37 +134,52 @@ fun GameScreen(
             if (!fieldToShow){
                 ukazButtonScore(onDone = {viewModel.fieldToShow()} )
             } else {
-                OutlinedTextField(value = meno,
-                    onValueChange = {text -> viewModel.setMeno(text)},
-                    label = { Text("Meno") })
-                Spacer(modifier = Modifier.height(3.dp))
-                Button(
-                    onClick = {
-                        viewModel.unclick()
-                        viewModel.fieldToHide()
-                        viewModel.saveScore(meno, score)
-                        viewModel.resetScore()
-                        //viewModel.resetQuestion()
-                        navigator.navigate(MainMenu.Menu.name)
-                    },
-                    modifier = Modifier
-                        //.fillMaxWidth()
-                        .padding(6.dp)
-                ) {
-                    Text("OK")
-                }
+                vypisPole(viewModel = viewModel, navigator = navigator)
             }
-            ukazButtonSpatne(onDone = {
-                navigator.navigate(MainMenu.Menu.name)
-                viewModel.resetQuestion()
-                viewModel.unclick()
-                viewModel.resetScore()
-            })
+            if (viewModel.timeRemaining.value == 0){
+                ukazButtonSpatne(onDone = {
+                    navigator.navigate(MainMenu.Menu.name)
+                    viewModel.resetQuestion()
+                    viewModel.unclick()
+                    viewModel.resetScore()
+                }, true)
+            } else{
+                ukazButtonSpatne(onDone = {
+                    navigator.navigate(MainMenu.Menu.name)
+                    viewModel.resetQuestion()
+                    viewModel.unclick()
+                    viewModel.resetScore()
+                })
+            }
+
         }
 
     }
 }
-
+@Composable
+fun vypisPole(viewModel: ThemeSelectionViewModel, navigator: NavController){
+    val meno by viewModel.meno.collectAsState()
+    val score by viewModel.score.collectAsState()
+    OutlinedTextField(value = meno,
+        onValueChange = {text -> viewModel.setMeno(text)},
+        label = { Text("Meno") })
+    Spacer(modifier = Modifier.height(3.dp))
+    Button(
+        onClick = {
+            viewModel.unclick()
+            viewModel.fieldToHide()
+            viewModel.saveScore(meno, score)
+            viewModel.resetScore()
+            //viewModel.resetQuestion()
+            navigator.navigate(MainMenu.Menu.name)
+        },
+        modifier = Modifier
+            //.fillMaxWidth()
+            .padding(6.dp)
+    ) {
+        Text("OK")
+    }
+}
 
 @Composable
 private fun jednaOdpoved(
@@ -129,13 +190,14 @@ private fun jednaOdpoved(
     isCorrect: Boolean
 ) {
 
-    Spacer(modifier = Modifier.height(5.dp)) // Push the button to the bottom
+    Spacer(modifier = Modifier.height(5.dp))
     Button(
         onClick = {
             if (clicked && !isCorrect || clicked && isCorrect){
 
             }
             else {
+                viewModel.setTimerRunning(false)
                 verifyAnswer(
                     answer = indexOdpovede,
                     otazka = otazka,
@@ -156,6 +218,7 @@ fun verifyAnswer(
     otazka: Otazky,
     viewModel: ThemeSelectionViewModel,
 ) {
+    viewModel.setTimerRunning(false)
     if (answer == otazka.correctAnswer) {
         viewModel.incrementScore()
         viewModel.setCorrect()
@@ -203,20 +266,27 @@ fun ukazButtonScore(onDone: () -> Unit){
     }
 }
 @Composable
-fun ukazButtonSpatne(onDone: () -> Unit){
+fun ukazButtonSpatne(onDone: () -> Unit, cas: Boolean = false){
     Spacer(modifier = Modifier.height(20.dp))
     Row {
         Row(verticalAlignment = Alignment.CenterVertically,
             ) {
             Column {
-                Text(
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    text = "Nespravna odpoved"
-                )
+                if (cas){
+                    Text(
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        text = "Vyprsal ti cas!"
+                    )
+                } else{
+                    Text(
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        text = "Nespravna odpoved"
+                    )
+                }
+
             }
         }
     }
-
     Button(
         onClick = onDone,
         modifier = Modifier
