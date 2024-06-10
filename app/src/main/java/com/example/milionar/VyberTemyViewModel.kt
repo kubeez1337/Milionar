@@ -1,12 +1,17 @@
 package com.example.milionar
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.random.Random
 
-class ThemeSelectionViewModel : ViewModel() {
+class ThemeSelectionViewModel(scoreManager: ScoreManager) : ViewModel() {
     private val _selectedTheme = MutableStateFlow<String>("")
     private val _selectedDifficulty = MutableStateFlow<String>("")
     val selectedTheme: StateFlow<String> = _selectedTheme.asStateFlow()
@@ -21,6 +26,12 @@ class ThemeSelectionViewModel : ViewModel() {
     private val _selectedQuestion = MutableStateFlow<Otazky>(ot.get(0))
     var selectedQuestion: StateFlow<Otazky> = _selectedQuestion.asStateFlow()
     var indexOtazky = 0
+    private val _scoreField = MutableStateFlow<Boolean>(false)
+    val scoreField: StateFlow<Boolean> = _scoreField.asStateFlow()
+    private val _meno = MutableStateFlow<String>("")
+    val meno : StateFlow<String> = _meno.asStateFlow()
+    val scoreboard = scoreManager
+
     fun setTheme(theme: String) {
         _selectedTheme.value = theme
     }
@@ -63,6 +74,20 @@ class ThemeSelectionViewModel : ViewModel() {
     fun unclick(){
         _wasclicked.value = false
     }
-
+    fun fieldToShow(){
+        _scoreField.value = true
+    }
+    fun fieldToHide(){
+        _scoreField.value = false
+    }
+    fun setMeno(meno: String){
+        _meno.value = meno
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun saveScore(meno: String, score: Int){
+        val formatt = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")
+        scoreboard.saveScore(Score(meno, score, LocalDateTime.now().format(formatt), selectedTheme.value))
+        setMeno("")
+    }
 
 }

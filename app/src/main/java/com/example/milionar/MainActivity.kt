@@ -29,6 +29,7 @@ import com.example.milionar.ui.theme.MilionarTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val scoreManager = ScoreManager(this)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -38,7 +39,7 @@ class MainActivity : ComponentActivity() {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    MilionarApp(viewModel = ThemeSelectionViewModel())
+                    MilionarApp(viewModel = ThemeSelectionViewModel(scoreManager))
                     /*
                     DifficultySelection(
                         selectedDifficulty = selectedDifficulty.toString(),
