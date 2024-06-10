@@ -30,7 +30,7 @@ class ScoreManager(private val context: Context) {
             emptyList()
         }
     }
-    fun resetScores(){
+    fun resetScoreboard(){
         val scores = emptyList<Score>()
         val json = Json.encodeToString(scores)
         File(context.filesDir, fileName).writeText(json)

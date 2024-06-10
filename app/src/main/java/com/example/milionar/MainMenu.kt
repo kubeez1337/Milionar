@@ -1,11 +1,14 @@
 package com.example.milionar
 
 import android.content.res.Resources.Theme
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -29,9 +32,11 @@ import androidx.navigation.compose.rememberNavController
 enum class MainMenu {
     Menu,
     Hra,
-    Tema
+    Tema,
+    ScoreBoard
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MilionarApp(
     viewModel: ThemeSelectionViewModel,
@@ -59,7 +64,11 @@ fun MilionarApp(
                 },
                 onMenuClick = {
                     navController.navigate(MainMenu.Menu.name)
+                },
+                onScoreBoardClick = {
+                    navController.navigate(MainMenu.ScoreBoard.name)
                 }
+
             )
         }
         composable(MainMenu.Tema.name) {
@@ -71,10 +80,16 @@ fun MilionarApp(
             GameScreen(
                 viewModel = viewModel,
                 onDone = { navController.navigate(MainMenu.Menu.name) },
-                navigator = navController)
+                navigator = navController
+            )
+        }
+        composable(MainMenu.ScoreBoard.name) {
+            ScoreboardScreen(viewModel.scoreboard,navController,viewModel)
         }
     }
 }
+
+
 
 @Composable
 fun MainMenuScreen(
@@ -83,8 +98,13 @@ fun MainMenuScreen(
     onSelectThemeClick: () -> Unit,
     onStartGameClick: () -> Unit,
     onDalejClick: () -> Unit,
-    onMenuClick: () -> Unit
+    onMenuClick: () -> Unit,
+    onScoreBoardClick: () -> Unit
 ) {
+    Button(onClick = { onScoreBoardClick() }) {
+    Text(text = "Zobraz scoreboard")
+    }
+    Spacer(modifier = Modifier.height(5.dp))
     Column {
         Text(text = "Menu")
         Spacer(modifier = Modifier.height(16.dp))

@@ -31,6 +31,8 @@ class ThemeSelectionViewModel(scoreManager: ScoreManager) : ViewModel() {
     private val _meno = MutableStateFlow<String>("")
     val meno : StateFlow<String> = _meno.asStateFlow()
     val scoreboard = scoreManager
+    private val _showScore = MutableStateFlow<Boolean>(true)
+    val showScore: StateFlow<Boolean> = _showScore.asStateFlow()
 
     fun setTheme(theme: String) {
         _selectedTheme.value = theme
@@ -88,6 +90,15 @@ class ThemeSelectionViewModel(scoreManager: ScoreManager) : ViewModel() {
         val formatt = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")
         scoreboard.saveScore(Score(meno, score, LocalDateTime.now().format(formatt), selectedTheme.value))
         setMeno("")
+    }
+    fun resetScoreboard(){
+        scoreboard.resetScoreboard()
+    }
+    fun setShowScore(){
+        _showScore.value = true
+    }
+    fun setHideScore(){
+        _showScore.value = false
     }
 
 }
