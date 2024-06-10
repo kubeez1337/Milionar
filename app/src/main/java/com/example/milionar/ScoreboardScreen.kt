@@ -1,9 +1,11 @@
 package com.example.milionar
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -19,13 +21,19 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun ScoreboardScreen(scoremanager: ScoreManager, nav: NavController, viewModel: ThemeSelectionViewModel) {
+fun ScoreboardScreen(
+    scoremanager: ScoreManager,
+    nav: NavController,
+    viewModel: ThemeSelectionViewModel
+) {
     val scoreToShow by viewModel.showScore.collectAsState()
     if (!scoreToShow) {
         viewModel.setShowScore()
     }
     val peachPink = Color(0xFFFFDAB9)
-    Column(modifier = Modifier.fillMaxSize().background(peachPink)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .background(peachPink)) {
         // Title
         Spacer(modifier = Modifier.height(24.dp))
         Text(
@@ -61,11 +69,12 @@ fun ScoreboardScreen(scoremanager: ScoreManager, nav: NavController, viewModel: 
             Button(onClick = {
                 viewModel.resetScoreboard()
                 viewModel.setHideScore()
-            }) {
+            }, colors = ButtonDefaults.buttonColors(Color.DarkGray)) {
                 Text(text = "Reset")
             }
 
-            Button(onClick = { nav.navigate(MainMenu.Menu.name) }) {
+            Button(onClick = { nav.navigate(MainMenu.Menu.name) },
+                colors = ButtonDefaults.buttonColors(Color.DarkGray)) {
                 Text(text = "Menu")
             }
         }
@@ -99,7 +108,7 @@ fun ScoreCard(score: Score, rank: Int) {
             Spacer(modifier = Modifier.height(4.dp))
             Row {
                 var tema = score.theme
-                if (tema.equals("")){
+                if (tema.equals("")) {
                     tema = "Random"
                 }
                 Text(text = "Theme: ${tema}")

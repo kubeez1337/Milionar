@@ -62,10 +62,12 @@ fun MilionarApp(
     navController: NavHostController = rememberNavController()
 ) {
     val selectedDifficulty by viewModel.selectedDifficulty.collectAsState()
+    val selectedTheme by viewModel.selectedTheme.collectAsState()
     //val selectedDifficulty = viewModel.selectedDifficulty
     NavHost(navController = navController, startDestination = MainMenu.Menu.name) {
         composable(MainMenu.Menu.name) {
             MainMenuScreen(
+                selectedTheme = selectedTheme,
                 selectedDifficulty = selectedDifficulty,
                 onDifficultySelected = {
                     viewModel.setDifficulty(it)
@@ -110,6 +112,7 @@ fun MilionarApp(
 
 @Composable
 fun MainMenuScreen(
+    selectedTheme: String,
     selectedDifficulty: String?,
     onDifficultySelected: (String) -> Unit,
     onSelectThemeClick: () -> Unit,
@@ -138,7 +141,7 @@ fun MainMenuScreen(
             ) {
 
                 Text(
-                    text = "Ako sa stat milionarom?",
+                    text = "Ako sa stať milionárom?",
                     fontSize = 28.sp,
                     style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
                     modifier = Modifier
@@ -147,7 +150,7 @@ fun MainMenuScreen(
                     .wrapContentWidth(Alignment.CenterHorizontally)
                 )
 
-                Text("Kviz", style = MaterialTheme.typography.h6)
+                Text("Kvíz", style = MaterialTheme.typography.h6)
 
                 Spacer(modifier = Modifier.height(32.dp))
 
@@ -155,7 +158,7 @@ fun MainMenuScreen(
                     onClick = onStartGameClick, modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(Color.hsl(120f, 0.5f, 0.5f))
                 ) {
-                    Text("Zacni kviz", style = TextStyle(fontWeight = FontWeight.Bold))
+                    Text("Začni kvíz", style = TextStyle(fontWeight = FontWeight.Bold))
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -165,7 +168,7 @@ fun MainMenuScreen(
                     onClick = onSelectThemeClick, modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(Color.hsl(27.2f, 0.733f, 0.367f))
                 ) {
-                    Text("Zvol temu", style = TextStyle(fontWeight = FontWeight.Bold))
+                    Text("Zvoľ tému", style = TextStyle(fontWeight = FontWeight.Bold))
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -175,14 +178,20 @@ fun MainMenuScreen(
                     onClick = onScoreBoardClick, modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(Color.hsl(27.2f, 0.733f, 0.367f))
                 ) {
-                    Text("Zobraz scoreboard", style = TextStyle(fontWeight = FontWeight.Bold))
+                    Text("Zobraz rebríček", style = TextStyle(fontWeight = FontWeight.Bold))
                 }
 
                 Spacer(modifier = Modifier.height(32.dp))
 
 
-                Text("Zvol obtiaznost", style = MaterialTheme.typography.h6)
+                Text("Zvoľ obtiažnosť", style = MaterialTheme.typography.h6)
                 DifficultySelection(selectedDifficulty, onDifficultySelected)
+                var them = selectedTheme
+                if (them.equals("")){
+                    them = "Random"
+                }
+                Spacer(modifier = Modifier.height(32.dp))
+                Text("Zvolená téma: $them", style = MaterialTheme.typography.h6)
             }
         }
     }

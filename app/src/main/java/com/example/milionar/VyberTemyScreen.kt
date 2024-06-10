@@ -35,7 +35,7 @@ fun ThemeSelectionScreen(
 ) {
     val selectedTheme by viewModel.selectedTheme.collectAsState()
     val peachPink = Color(0xFFFFDAB9)
-    val themes = listOf("Matematika", "Science", "History", "Geography", "Random")
+    val themes = listOf("Matematika", "Veda", "História", "Geografia", "Random")
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -46,7 +46,7 @@ fun ThemeSelectionScreen(
     ) {
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "            Theme selection",
+            text = "            Výber témy",
             style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
             modifier = Modifier.padding(bottom = 16.dp)
         )
@@ -74,9 +74,9 @@ fun ThemeSelectionScreen(
             onClick = onDone,
             modifier = Modifier
                 .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(Color.hsl(27.2f, 0.733f, 0.367f))
+            colors = ButtonDefaults.buttonColors(Color.DarkGray)
         ) {
-            Text("Done", style = TextStyle(fontWeight = FontWeight.Bold))
+            Text("Ďalej", style = TextStyle(fontWeight = FontWeight.Bold))
         }
     }
 }

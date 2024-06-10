@@ -50,7 +50,7 @@ DUPLICITA OTAZOK - DONE
 Scoreboard screen - DONE
 MENU BUTTON - Done
 CASOMIERA - Done
-UI
+UI - Done / pomenit farby buttonov
 OTAZKY JSON / SQLITE
 Pridanie otazky
 Dotuknutie viewmodelov
@@ -122,7 +122,7 @@ fun GameScreen(
                     viewModel.fieldToHide()
                     viewModel.resetScore()
                     navigator.navigate(MainMenu.Menu.name) },
-                modifier = Modifier.wrapContentSize()
+                modifier = Modifier.wrapContentSize(),colors = ButtonDefaults.buttonColors(Color.DarkGray)
             ) {
                 Text("Menu")
             }
@@ -151,7 +151,7 @@ fun GameScreen(
         }
 
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = "Score: $score",
+        Text(text = "Skóre: $score",
             modifier = Modifier.align(Alignment.CenterHorizontally).padding(16.dp)
             ,fontSize = 18.sp)
         jednaOdpoved(otazka, viewModel, 0,wasClicked,isCorrect)
@@ -211,7 +211,7 @@ fun vypisPole(viewModel: ThemeSelectionViewModel, navigator: NavController){
                 viewModel.resetScore()
                 //viewModel.resetQuestion()
                 navigator.navigate(MainMenu.Menu.name)
-            }
+            },colors = ButtonDefaults.buttonColors(Color.DarkGray)
         ) {
             Text("OK")
         }
@@ -246,7 +246,8 @@ private fun jednaOdpoved(
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = 16.dp),
+        colors = ButtonDefaults.buttonColors(Color.hsl(27.2f, 0.733f, 0.367f))
     ) {
         Text(otazka.options.get(indexOdpovede))
     }
@@ -272,15 +273,16 @@ fun verifyAnswer(
 fun ukazButtonDalej(onDone: () -> Unit) {
     Spacer(modifier = Modifier.height(16.dp))
     Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
-        Text(text = "Spravna odpoved!")
+        Text(text = "Správna odpoveď!")
     }
     Button(
         onClick = onDone,
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
+        ,colors = ButtonDefaults.buttonColors(Color.DarkGray)
     ) {
-        Text("Dalsi")
+        Text("Ďaľšia otázka")
     }
 }
 @Composable
@@ -290,9 +292,9 @@ fun ukazButtonScore(onDone: () -> Unit){
     Column(modifier = Modifier.fillMaxWidth(),horizontalAlignment = Alignment.CenterHorizontally) {
         Button(
             onClick = onDone,
-            modifier = Modifier.padding(6.dp)
+            modifier = Modifier.padding(6.dp), colors = ButtonDefaults.buttonColors(Color.DarkGray)
         ) {
-            Text("Zapis score")
+            Text("Zapíš skóre")
         }
     }
 }
@@ -303,11 +305,11 @@ fun ukazButtonSpatne(onDone: () -> Unit, cas: Boolean = false){
         horizontalArrangement = Arrangement.Center){
             if (cas){
                 Text(
-                    text = "Vyprsal ti cas!"
+                    text = "Vypršal ti čas!"
                 )
             } else{
                 Text(
-                    text = "Nespravna odpoved"
+                    text = "Nesprávna odpoveď"
                 )
             }
 
