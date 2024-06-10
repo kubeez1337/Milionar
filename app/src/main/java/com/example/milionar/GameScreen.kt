@@ -65,6 +65,7 @@ fun GameScreen(
         } else if (wasClicked){
             ukazButtonSpatne(onDone = {
                 navigator.navigate(MainMenu.Menu.name)
+                viewModel.resetQuestion()
                 viewModel.unclick()
                 viewModel.resetScore()
             })

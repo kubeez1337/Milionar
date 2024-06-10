@@ -45,11 +45,13 @@ fun MilionarApp(
                 selectedDifficulty = selectedDifficulty,
                 onDifficultySelected = {
                     viewModel.setDifficulty(it)
+                    //viewModel.setQuestions()
                 },
                 onSelectThemeClick = {
                     navController.navigate(MainMenu.Tema.name)
                 },
                 onStartGameClick = {
+                    viewModel.setQuestions()
                     navController.navigate(MainMenu.Hra.name)
                 },
                 onDalejClick = {
@@ -100,6 +102,8 @@ fun MainMenuScreen(
                     checked = selectedDifficulty == "Lahka",
                     onCheckedChange = { isChecked ->
                         if (isChecked) onDifficultySelected("Lahka")
+                        else onDifficultySelected("")
+
                     }
                 )
                 Text("Lahka")
@@ -110,6 +114,7 @@ fun MainMenuScreen(
                     checked = selectedDifficulty == "Stredna",
                     onCheckedChange = { isChecked ->
                         if (isChecked) onDifficultySelected("Stredna")
+                        else onDifficultySelected("")
                     }
                 )
                 Text("Stredna")
@@ -120,6 +125,7 @@ fun MainMenuScreen(
                     checked = selectedDifficulty == "Tazka",
                     onCheckedChange = { isChecked ->
                         if (isChecked) onDifficultySelected("Tazka")
+                        else onDifficultySelected("")
                     }
                 )
                 Text("Tazka")

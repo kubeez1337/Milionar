@@ -26,12 +26,19 @@ fun ThemeSelectionScreen(
     Column(modifier = Modifier.fillMaxSize()) {
         // Your theme selection UI here (e.g., RadioButtons, Dropdowns)
         // Example with RadioButtons:
-        val themes = listOf("Matematika", "Science", "History", "Geography")
+        val themes = listOf("Matematika", "Science", "History", "Geography", "Random")
+        Spacer(modifier = Modifier.weight(1f)) // Push the themes to the top
         themes.forEach { theme ->
             Row(verticalAlignment = Alignment.CenterVertically) {
                 RadioButton(
                     selected = selectedTheme == theme,
-                    onClick = { viewModel.setTheme(theme) }
+                    onClick = {
+                        viewModel.setTheme(theme)
+                        if (theme == "Random") {
+                            viewModel.setTheme("")
+                        }
+                        //viewModel.setQuestions()
+                    }
                 )
                 Text(theme)
             }

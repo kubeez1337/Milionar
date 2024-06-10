@@ -36,6 +36,11 @@ class ThemeSelectionViewModel : ViewModel() {
     fun setIncorrect() {
         _correct.value = false
     }
+    fun setQuestions(){
+        ot = generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
+        indexOtazky = 0
+        _selectedQuestion.value = ot.get(indexOtazky)
+    }
     fun resetQuestion(){
         ++indexOtazky
         if (indexOtazky == ot.size){
