@@ -10,7 +10,7 @@ data class Otazky(val id: Int,
 enum class Difficulty {
     Lahka, Stredna, Tazka
 }
-fun generateQuestions() : List<Otazky> {
+fun generateQuestions(theme: String, difficulty: String) : List<Otazky> {
     val question6 = Otazky(
         id = 6,
         question = "What is the capital of France?",
@@ -54,8 +54,8 @@ fun generateQuestions() : List<Otazky> {
         question = "Ktorý prvok má chemický symbol O?",
         options = listOf("Vápnik", "Kyslík", "Zlato", "Striebro"),
         correctAnswer = 1,
-        category = "Chémia",
-        difficulty = Difficulty.Stredna,
+        category = "Matematika",
+        difficulty = Difficulty.Lahka,
         theme = "Chemické prvky"
     )
 
@@ -78,6 +78,19 @@ fun generateQuestions() : List<Otazky> {
         difficulty = Difficulty.Tazka,
         theme = "Slovenská literatúra"
     )
-    return listOf(question1, question2)
+    val otazke = listOf(question1, question2,question3,question4,question5,question6,question7)
+
+    if (theme == ""){
+        if (difficulty == ""){
+            return otazke
+        }
+        else{
+            return otazke.filter{ it.difficulty.name == difficulty}
+        }
+    } else if (difficulty == ""){
+        return otazke.filter { it.theme == theme }
+    }
+
+    return otazke.filter { it.theme == theme && it.difficulty.name == difficulty }
 }
 

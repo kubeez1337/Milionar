@@ -7,15 +7,17 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlin.random.Random
 
 class ThemeSelectionViewModel : ViewModel() {
-    private val _selectedTheme = MutableStateFlow<String?>(null)
-    private val _selectedDifficulty = MutableStateFlow<String?>(null)
-    val selectedTheme: StateFlow<String?> = _selectedTheme.asStateFlow()
-    val selectedDifficulty: StateFlow<String?> = _selectedDifficulty.asStateFlow()
+    private val _selectedTheme = MutableStateFlow<String>("")
+    private val _selectedDifficulty = MutableStateFlow<String>("")
+    val selectedTheme: StateFlow<String> = _selectedTheme.asStateFlow()
+    val selectedDifficulty: StateFlow<String> = _selectedDifficulty.asStateFlow()
     private val _score = MutableStateFlow<Int>(0)
     val score: StateFlow<Int> = _score.asStateFlow()
     private val _correct = MutableStateFlow<Boolean>(false)
     val correct: StateFlow<Boolean> = _correct.asStateFlow()
-    var ot = generateQuestions().shuffled()
+    private val _wasclicked = MutableStateFlow<Boolean>(false)
+    val wasclicked: StateFlow<Boolean> = _wasclicked.asStateFlow()
+    var ot = generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
     private val _selectedQuestion = MutableStateFlow<Otazky>(ot.get(0))
     var selectedQuestion: StateFlow<Otazky> = _selectedQuestion.asStateFlow()
     var indexOtazky = 0
@@ -37,7 +39,7 @@ class ThemeSelectionViewModel : ViewModel() {
     fun resetQuestion(){
         ++indexOtazky
         if (indexOtazky == ot.size){
-            ot = generateQuestions().shuffled()
+            ot = generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
             indexOtazky = 0
         }
         setIncorrect()
@@ -46,5 +48,12 @@ class ThemeSelectionViewModel : ViewModel() {
     fun resetScore(){
         _score.value = 0
     }
+    fun click(){
+        _wasclicked.value = true
+    }
+    fun unclick(){
+        _wasclicked.value = false
+    }
+
 
 }

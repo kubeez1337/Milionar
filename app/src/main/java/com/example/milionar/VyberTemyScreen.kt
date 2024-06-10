@@ -26,7 +26,7 @@ fun ThemeSelectionScreen(
     Column(modifier = Modifier.fillMaxSize()) {
         // Your theme selection UI here (e.g., RadioButtons, Dropdowns)
         // Example with RadioButtons:
-        val themes = listOf("Math", "Science", "History", "Geography")
+        val themes = listOf("Matematika", "Science", "History", "Geography")
         themes.forEach { theme ->
             Row(verticalAlignment = Alignment.CenterVertically) {
                 RadioButton(

@@ -1,5 +1,7 @@
 package com.example.milionar
 
+
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,31 +16,58 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 
 @Composable
 fun GameScreen(
     viewModel: ThemeSelectionViewModel,
-    onDone: () -> Unit// Callback to navigate back
+    onDone: () -> Unit,
+    navigator: NavController
 ) {
     val selectedTheme by viewModel.selectedTheme.collectAsState()
     val selectedDifficulty by viewModel.selectedDifficulty.collectAsState()
     val isCorrect by viewModel.correct.collectAsState()
-    val ot = generateQuestions()
+    val theme by viewModel.selectedTheme.collectAsState()
+    val difficulty by viewModel.selectedDifficulty.collectAsState()
+    val ot = generateQuestions(theme,difficulty)
     val otazka by viewModel.selectedQuestion.collectAsState()
     val score by viewModel.score.collectAsState()
+    val wasClicked by viewModel.wasclicked.collectAsState()
     Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(60.dp))
-        Text(otazka.question)
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp) // pridanie paddingu pre lepší vzhľad
+        ) {
+            Text(
+                text = otazka.question,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                fontSize = 20.sp,
+                maxLines = Int.MAX_VALUE, // povoliť zalomenie do viacerých riadkov
+                overflow = TextOverflow.Visible // zabezpečiť viditeľnosť celého textu
+            )
+        }
+
         Spacer(modifier = Modifier.height(30.dp))
-        Text(text = "Score: $score")
+        Text(text = "Score: $score", modifier = Modifier.align(Alignment.CenterHorizontally))
         jednaOdpoved(otazka, viewModel, 0)
         jednaOdpoved(otazka, viewModel, 1)
         jednaOdpoved(otazka, viewModel, 2)
         jednaOdpoved(otazka, viewModel, 3)
         if (isCorrect) {
             ukazButtonDalej(onDone = { viewModel.resetQuestion() })
+        } else if (wasClicked){
+            ukazButtonSpatne(onDone = {
+                navigator.navigate(MainMenu.Menu.name)
+                viewModel.unclick()
+                viewModel.resetScore()
+            })
         }
 
     }
@@ -77,14 +106,15 @@ fun verifyAnswer(
         viewModel.incrementScore()
         viewModel.setCorrect()
     } else {
-        viewModel.resetScore()
+        //viewModel.resetScore()
+        viewModel.click()
         viewModel.setIncorrect()
     }
 }
 
 @Composable
 fun ukazButtonDalej(onDone: () -> Unit) {
-    Spacer(modifier = Modifier.height(120.dp))
+    Spacer(modifier = Modifier.height(100.dp))
     Row {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(text = "Spravna odpoved!")
@@ -97,5 +127,22 @@ fun ukazButtonDalej(onDone: () -> Unit) {
             .padding(16.dp)
     ) {
         Text("Dalsi")
+    }
+}
+@Composable
+fun ukazButtonSpatne(onDone: () -> Unit){
+    Spacer(modifier = Modifier.height(100.dp))
+    Row {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(text = "Nespravna odpoved")
+        }
+    }
+    Button(
+        onClick = onDone,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Text("Menu")
     }
 }

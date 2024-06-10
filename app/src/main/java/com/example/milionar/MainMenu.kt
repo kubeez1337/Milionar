@@ -54,6 +54,9 @@ fun MilionarApp(
                 },
                 onDalejClick = {
                     navController.navigate(MainMenu.Hra.name)
+                },
+                onMenuClick = {
+                    navController.navigate(MainMenu.Menu.name)
                 }
             )
         }
@@ -65,7 +68,8 @@ fun MilionarApp(
         composable(MainMenu.Hra.name) {
             GameScreen(
                 viewModel = viewModel,
-                onDone = { navController.navigate(MainMenu.Menu.name) })
+                onDone = { navController.navigate(MainMenu.Menu.name) },
+                navigator = navController)
         }
     }
 }
@@ -76,7 +80,8 @@ fun MainMenuScreen(
     onDifficultySelected: (String) -> Unit,
     onSelectThemeClick: () -> Unit,
     onStartGameClick: () -> Unit,
-    onDalejClick: () -> Unit
+    onDalejClick: () -> Unit,
+    onMenuClick: () -> Unit
 ) {
     Column {
         Text(text = "Menu")
