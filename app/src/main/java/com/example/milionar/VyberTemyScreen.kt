@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material.MaterialTheme
@@ -34,10 +36,14 @@ fun ThemeSelectionScreen(
     val selectedTheme by viewModel.selectedTheme.collectAsState()
     val peachPink = Color(0xFFFFDAB9)
     val themes = listOf("Matematika", "Science", "History", "Geography", "Random")
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(peachPink)
-        .padding(16.dp), verticalArrangement = Arrangement.Top) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(peachPink)
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.Top
+    ) {
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = "            Theme selection",
@@ -60,7 +66,7 @@ fun ThemeSelectionScreen(
                         selectedColor = Color.Black
                     )
                 )
-                Text(theme,style = TextStyle(fontWeight = FontWeight.Bold), fontSize = 20.sp)
+                Text(theme, style = TextStyle(fontWeight = FontWeight.Bold), fontSize = 20.sp)
             }
         }
         Spacer(modifier = Modifier.height(260.dp))

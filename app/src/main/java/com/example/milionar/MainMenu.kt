@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
@@ -122,7 +124,8 @@ fun MainMenuScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(peachPink),
+                .background(peachPink)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -146,7 +149,7 @@ fun MainMenuScreen(
 
                 Text("Kviz", style = MaterialTheme.typography.h6)
 
-                Spacer(modifier = Modifier.height(32.dp)) // Increased spacing
+                Spacer(modifier = Modifier.height(32.dp))
 
                 Button(
                     onClick = onStartGameClick, modifier = Modifier.fillMaxWidth(),
@@ -157,7 +160,7 @@ fun MainMenuScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Theme Selection Button
+
                 Button(
                     onClick = onSelectThemeClick, modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(Color.hsl(27.2f, 0.733f, 0.367f))
@@ -167,7 +170,7 @@ fun MainMenuScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Scoreboard Button
+
                 Button(
                     onClick = onScoreBoardClick, modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(Color.hsl(27.2f, 0.733f, 0.367f))
@@ -177,7 +180,7 @@ fun MainMenuScreen(
 
                 Spacer(modifier = Modifier.height(32.dp))
 
-                // Difficulty Selection
+
                 Text("Zvol obtiaznost", style = MaterialTheme.typography.h6)
                 DifficultySelection(selectedDifficulty, onDifficultySelected)
             }

@@ -6,6 +6,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -14,7 +16,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -27,6 +33,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,11 +48,13 @@ OSETRENIE PO CLICKU ZLEJ ODPOVEDE - DONE
 SPRAVIT LEADERBOARD Z JSONU - DONE
 DUPLICITA OTAZOK - DONE
 Scoreboard screen - DONE
-MENU BUTTON
-CASOMIERA
+MENU BUTTON - Done
+CASOMIERA - Done
 UI
-ODOMYKANIE TEM
-
+OTAZKY JSON / SQLITE
+Pridanie otazky
+Dotuknutie viewmodelov
+ODOMYKANIE TEM / mozno
  */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -68,6 +78,7 @@ fun GameScreen(
     val isTimerRunning by viewModel.isTimerRunning.collectAsState()
     var startTime = System.currentTimeMillis()
     var animationProgress by remember { mutableStateOf(1f) }
+    val peachPink = Color(0xFFFFDAB9)
     LaunchedEffect(key1 = otazka) {
         viewModel.setTimerRunning(true)
         viewModel.resetTimeRemaining()
@@ -88,39 +99,61 @@ fun GameScreen(
                 break
             }
         }
-
-
-
     }
-    Column(modifier = Modifier.fillMaxSize()) {
-
-        Spacer(modifier = Modifier.height(56.dp))
+    Column(modifier = Modifier.fillMaxSize().background(peachPink).verticalScroll(
+        rememberScrollState()
+    )) {
+        Spacer(modifier = Modifier.height(16.dp))
         LinearProgressIndicator(
             progress = animationProgress,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(12.dp)
         )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp),
+            horizontalArrangement = Arrangement.End
+        ) {
+            Button(
+                onClick = {
+                    viewModel.unclick()
+                    viewModel.fieldToHide()
+                    viewModel.resetScore()
+                    navigator.navigate(MainMenu.Menu.name) },
+                modifier = Modifier.wrapContentSize()
+            ) {
+                Text("Menu")
+            }
+        }
+        //Spacer(modifier = Modifier.height(56.dp))
 
 
-        Spacer(modifier = Modifier.height(60.dp))
+
+        //Spacer(modifier = Modifier.height(60.dp))
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp) // pridanie paddingu pre lepší vzhľad
+                .padding(16.dp)
         ) {
             Text(
                 text = otazka.question,
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                fontSize = 20.sp,
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(16.dp),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
                 maxLines = Int.MAX_VALUE,
                 overflow = TextOverflow.Visible
             )
         }
 
-        Spacer(modifier = Modifier.height(30.dp))
-        Text(text = "Score: $score", modifier = Modifier.align(Alignment.CenterHorizontally))
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = "Score: $score",
+            modifier = Modifier.align(Alignment.CenterHorizontally).padding(16.dp)
+            ,fontSize = 18.sp)
         jednaOdpoved(otazka, viewModel, 0,wasClicked,isCorrect)
         jednaOdpoved(otazka, viewModel, 1,wasClicked,isCorrect)
         jednaOdpoved(otazka, viewModel, 2,wasClicked,isCorrect)
@@ -160,25 +193,30 @@ fun GameScreen(
 fun vypisPole(viewModel: ThemeSelectionViewModel, navigator: NavController){
     val meno by viewModel.meno.collectAsState()
     val score by viewModel.score.collectAsState()
-    OutlinedTextField(value = meno,
-        onValueChange = {text -> viewModel.setMeno(text)},
-        label = { Text("Meno") })
-    Spacer(modifier = Modifier.height(3.dp))
-    Button(
-        onClick = {
-            viewModel.unclick()
-            viewModel.fieldToHide()
-            viewModel.saveScore(meno, score)
-            viewModel.resetScore()
-            //viewModel.resetQuestion()
-            navigator.navigate(MainMenu.Menu.name)
-        },
+    Row(
         modifier = Modifier
-            //.fillMaxWidth()
-            .padding(6.dp)
-    ) {
-        Text("OK")
+            .padding(16.dp)
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ){
+        OutlinedTextField(value = meno,
+            onValueChange = {text -> viewModel.setMeno(text)},
+            label = { Text("Meno") }, modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.height(3.dp))
+        Button(
+            onClick = {
+                viewModel.unclick()
+                viewModel.fieldToHide()
+                viewModel.saveScore(meno, score)
+                viewModel.resetScore()
+                //viewModel.resetQuestion()
+                navigator.navigate(MainMenu.Menu.name)
+            }
+        ) {
+            Text("OK")
+        }
     }
+
 }
 
 @Composable
@@ -189,9 +227,9 @@ private fun jednaOdpoved(
     clicked: Boolean,
     isCorrect: Boolean
 ) {
-
-    Spacer(modifier = Modifier.height(5.dp))
+    Spacer(modifier = Modifier.height(16.dp))
     Button(
+
         onClick = {
             if (clicked && !isCorrect || clicked && isCorrect){
 
@@ -207,7 +245,8 @@ private fun jednaOdpoved(
         },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp)
+            .height(56.dp)
+            .padding(horizontal = 16.dp)
     ) {
         Text(otazka.options.get(indexOdpovede))
     }
@@ -231,11 +270,9 @@ fun verifyAnswer(
 
 @Composable
 fun ukazButtonDalej(onDone: () -> Unit) {
-    Spacer(modifier = Modifier.height(10.dp))
-    Row {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = "Spravna odpoved!")
-        }
+    Spacer(modifier = Modifier.height(16.dp))
+    Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
+        Text(text = "Spravna odpoved!")
     }
     Button(
         onClick = onDone,
@@ -249,44 +286,35 @@ fun ukazButtonDalej(onDone: () -> Unit) {
 @Composable
 fun ukazButtonScore(onDone: () -> Unit){
     Spacer(modifier = Modifier.height(16.dp))
-    Row {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Button(
-                    onClick = onDone,
-                    modifier = Modifier
-                        //.fillMaxWidth()
 
-                        .padding(40.dp)
-                ) {
-                    Text("Zapis score")
-                }
-            }
+    Column(modifier = Modifier.fillMaxWidth(),horizontalAlignment = Alignment.CenterHorizontally) {
+        Button(
+            onClick = onDone,
+            modifier = Modifier.padding(6.dp)
+        ) {
+            Text("Zapis score")
         }
     }
 }
 @Composable
 fun ukazButtonSpatne(onDone: () -> Unit, cas: Boolean = false){
-    Spacer(modifier = Modifier.height(20.dp))
-    Row {
-        Row(verticalAlignment = Alignment.CenterVertically,
-            ) {
-            Column {
-                if (cas){
-                    Text(
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        text = "Vyprsal ti cas!"
-                    )
-                } else{
-                    Text(
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        text = "Nespravna odpoved"
-                    )
-                }
-
+    Spacer(modifier = Modifier.height(6.dp))
+    Row (modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center){
+            if (cas){
+                Text(
+                    text = "Vyprsal ti cas!"
+                )
+            } else{
+                Text(
+                    text = "Nespravna odpoved"
+                )
             }
-        }
+
+
+
     }
+    /*
     Button(
         onClick = onDone,
         modifier = Modifier
@@ -295,4 +323,5 @@ fun ukazButtonSpatne(onDone: () -> Unit, cas: Boolean = false){
     ) {
         Text("Menu")
     }
+     */
 }
