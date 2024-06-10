@@ -141,7 +141,7 @@ fun MainMenuScreen(
                     modifier = Modifier
                         .padding(bottom = 8.dp)
                         .fillMaxWidth()
-                    //.wrapContentWidth(Alignment.CenterHorizontally)
+                    .wrapContentWidth(Alignment.CenterHorizontally)
                 )
 
                 Text("Kviz", style = MaterialTheme.typography.h6)
