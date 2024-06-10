@@ -48,6 +48,10 @@ class ThemeSelectionViewModel : ViewModel() {
             indexOtazky = 0
         }
         setIncorrect()
+        if (ot.get(indexOtazky) == _selectedQuestion.value){
+            resetQuestion()
+            return
+        }
         _selectedQuestion.value = ot.get(indexOtazky)
     }
     fun resetScore(){

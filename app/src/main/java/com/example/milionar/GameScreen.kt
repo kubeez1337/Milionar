@@ -22,7 +22,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
-
+/*
+TODO
+OSETRENIE PO CLICKU ZLEJ ODPOVEDE - DONE
+SPRAVIT LEADERBOARD Z JSONU
+DUPLICITA OTAZOK - DONE
+MENU BUTTON
+ODOMYKANIE TEM
+UI
+ */
 @Composable
 fun GameScreen(
     viewModel: ThemeSelectionViewModel,
@@ -40,6 +48,7 @@ fun GameScreen(
     val wasClicked by viewModel.wasclicked.collectAsState()
     Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(60.dp))
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -56,12 +65,15 @@ fun GameScreen(
 
         Spacer(modifier = Modifier.height(30.dp))
         Text(text = "Score: $score", modifier = Modifier.align(Alignment.CenterHorizontally))
-        jednaOdpoved(otazka, viewModel, 0)
-        jednaOdpoved(otazka, viewModel, 1)
-        jednaOdpoved(otazka, viewModel, 2)
-        jednaOdpoved(otazka, viewModel, 3)
+        jednaOdpoved(otazka, viewModel, 0,wasClicked,isCorrect)
+        jednaOdpoved(otazka, viewModel, 1,wasClicked,isCorrect)
+        jednaOdpoved(otazka, viewModel, 2,wasClicked,isCorrect)
+        jednaOdpoved(otazka, viewModel, 3,wasClicked,isCorrect)
         if (isCorrect) {
-            ukazButtonDalej(onDone = { viewModel.resetQuestion() })
+            viewModel.click()
+            ukazButtonDalej(onDone = {
+                viewModel.unclick()
+                viewModel.resetQuestion() })
         } else if (wasClicked){
             ukazButtonSpatne(onDone = {
                 navigator.navigate(MainMenu.Menu.name)
@@ -79,16 +91,25 @@ fun GameScreen(
 private fun jednaOdpoved(
     otazka: Otazky,
     viewModel: ThemeSelectionViewModel,
-    indexOdpovede: Int
+    indexOdpovede: Int,
+    clicked: Boolean,
+    isCorrect: Boolean
 ) {
+
     Spacer(modifier = Modifier.height(10.dp)) // Push the button to the bottom
     Button(
         onClick = {
-            verifyAnswer(
-                answer = indexOdpovede,
-                otazka = otazka,
-                viewModel = viewModel,
-            )
+            if (clicked && !isCorrect || clicked && isCorrect){
+
+            }
+            else {
+                verifyAnswer(
+                    answer = indexOdpovede,
+                    otazka = otazka,
+                    viewModel = viewModel,
+                )
+            }
+
         },
         modifier = Modifier
             .fillMaxWidth()
