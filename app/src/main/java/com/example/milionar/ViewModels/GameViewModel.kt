@@ -1,21 +1,21 @@
-package com.example.milionar
+package com.example.milionar.ViewModels
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
+import com.example.milionar.DataManagement.Otazka
+import com.example.milionar.DataManagement.Otazky
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import kotlin.random.Random
 
-class ThemeSelectionViewModel(scoreManager: ScoreManager, vsetkyOtazky: Otazka) : ViewModel() {
-    private val _selectedTheme = MutableStateFlow<String>("")
-    private val _selectedDifficulty = MutableStateFlow<String>("")
-    val selectedTheme: StateFlow<String> = _selectedTheme.asStateFlow()
-    val selectedDifficulty: StateFlow<String> = _selectedDifficulty.asStateFlow()
+class GameViewModel(vsetkyOtazky: Otazka,
+                    themeViewModel: ThemeSelectionViewModel,
+                    difficultyViewModel: DifficultyViewModel,
+                    scoreboardViewModel: ScoreboardViewModel) : ViewModel() {
+    val scoreboardViewModel = scoreboardViewModel
+    val selectedTheme = themeViewModel.selectedTheme
+    val selectedDifficulty = difficultyViewModel.selectedDifficulty
     private val _score = MutableStateFlow<Int>(0)
     val score: StateFlow<Int> = _score.asStateFlow()
     private val _correct = MutableStateFlow<Boolean>(false)
@@ -27,26 +27,20 @@ class ThemeSelectionViewModel(scoreManager: ScoreManager, vsetkyOtazky: Otazka) 
     private val _selectedQuestion = MutableStateFlow<Otazky>(ot.get(0))
     var selectedQuestion: StateFlow<Otazky> = _selectedQuestion.asStateFlow()
     var indexOtazky = 0
-    private val _scoreField = MutableStateFlow<Boolean>(false)
-    val scoreField: StateFlow<Boolean> = _scoreField.asStateFlow()
-    private val _meno = MutableStateFlow<String>("")
-    val meno : StateFlow<String> = _meno.asStateFlow()
-    val scoreboard = scoreManager
-    private val _showScore = MutableStateFlow<Boolean>(true)
-    val showScore: StateFlow<Boolean> = _showScore.asStateFlow()
     private val _isTimerRunning = MutableStateFlow<Boolean>(false)
     val isTimerRunning: StateFlow<Boolean> = _isTimerRunning.asStateFlow()
     private val _timeRemaining = MutableStateFlow<Int>(15)
     val timeRemaining: StateFlow<Int> = _timeRemaining.asStateFlow()
+    private val _scoreField = MutableStateFlow<Boolean>(false)
+    val scoreField: StateFlow<Boolean> = _scoreField.asStateFlow()
+    private val _meno = MutableStateFlow<String>("")
+    val meno : StateFlow<String> = _meno.asStateFlow()
 
-    fun setTheme(theme: String) {
-        _selectedTheme.value = theme
-    }
-    fun setDifficulty(diff: String) {
-        _selectedDifficulty.value = diff
-    }
     fun incrementScore() {
         _score.value++
+    }
+    fun resetScore(){
+        _score.value = 0
     }
     fun setCorrect() {
         _correct.value = true
@@ -72,9 +66,6 @@ class ThemeSelectionViewModel(scoreManager: ScoreManager, vsetkyOtazky: Otazka) 
         }
         _selectedQuestion.value = ot.get(indexOtazky)
     }
-    fun resetScore(){
-        _score.value = 0
-    }
     fun click(){
         _wasclicked.value = true
     }
@@ -92,18 +83,8 @@ class ThemeSelectionViewModel(scoreManager: ScoreManager, vsetkyOtazky: Otazka) 
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun saveScore(meno: String, score: Int){
-        val formatt = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")
-        scoreboard.saveScore(Score(meno, score, LocalDateTime.now().format(formatt), selectedTheme.value))
+        scoreboardViewModel.saveScore(meno, score, selectedTheme.value)
         setMeno("")
-    }
-    fun resetScoreboard(){
-        scoreboard.resetScoreboard()
-    }
-    fun setShowScore(){
-        _showScore.value = true
-    }
-    fun setHideScore(){
-        _showScore.value = false
     }
     fun setTimerRunning(bool: Boolean){
         _isTimerRunning.value = bool
@@ -114,5 +95,4 @@ class ThemeSelectionViewModel(scoreManager: ScoreManager, vsetkyOtazky: Otazka) 
     fun decrementTimeRemaining(){
         _timeRemaining.value--
     }
-
 }

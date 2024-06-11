@@ -1,4 +1,4 @@
-package com.example.milionar
+package com.example.milionar.Screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +27,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.milionar.ViewModels.ThemeSelectionViewModel
 
 @Composable
 fun ThemeSelectionScreen(

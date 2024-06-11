@@ -1,4 +1,4 @@
-package com.example.milionar
+package com.example.milionar.DataManagement
 
 import kotlinx.serialization.Serializable
 

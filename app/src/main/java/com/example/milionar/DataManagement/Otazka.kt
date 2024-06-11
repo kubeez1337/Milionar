@@ -1,9 +1,8 @@
-package com.example.milionar
+package com.example.milionar.DataManagement
 
 import android.content.Context
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import java.io.File
 
 
 class Otazka(private val context: Context){

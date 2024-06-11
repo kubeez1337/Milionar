@@ -1,4 +1,4 @@
-package com.example.milionar
+package com.example.milionar.DataManagement
 
 import android.content.Context
 import kotlinx.serialization.decodeFromString

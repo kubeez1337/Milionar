@@ -1,15 +1,11 @@
-package com.example.milionar
-
+package com.example.milionar.Screens
 
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,7 +19,9 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -39,7 +37,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import com.example.milionar.DataManagement.Otazky
+import com.example.milionar.ViewModels.GameViewModel
+import com.example.milionar.ViewModels.ThemeSelectionViewModel
 import kotlinx.coroutines.delay
 
 /*
@@ -51,15 +51,16 @@ Scoreboard screen - DONE
 MENU BUTTON - Done
 CASOMIERA - Done
 UI - Done / pomenit farby buttonov
-OTAZKY JSON / SQLITE
+OTAZKY JSON / SQLITE - done
+zobrazenie spravnej odpovede - done
 Pridanie otazky
-Dotuknutie viewmodelov
+Dotuknutie viewmodelov - done
 ODOMYKANIE TEM / mozno
  */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun GameScreen(
-    viewModel: ThemeSelectionViewModel,
+    viewModel: GameViewModel,
     onDone: () -> Unit,
     navigator: NavController
 ) {
@@ -100,15 +101,21 @@ fun GameScreen(
             }
         }
     }
-    Column(modifier = Modifier.fillMaxSize().background(peachPink).verticalScroll(
-        rememberScrollState()
-    )) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(peachPink)
+            .verticalScroll(
+                rememberScrollState()
+            )
+    ) {
         Spacer(modifier = Modifier.height(16.dp))
         LinearProgressIndicator(
             progress = animationProgress,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp)
+                .padding(8.dp),
+            color = Color.DarkGray
         )
         Row(
             modifier = Modifier
@@ -121,14 +128,15 @@ fun GameScreen(
                     viewModel.unclick()
                     viewModel.fieldToHide()
                     viewModel.resetScore()
-                    navigator.navigate(MainMenu.Menu.name) },
-                modifier = Modifier.wrapContentSize(),colors = ButtonDefaults.buttonColors(Color.DarkGray)
+                    navigator.navigate(MainMenu.Menu.name)
+                },
+                modifier = Modifier.wrapContentSize(),
+                colors = ButtonDefaults.buttonColors(Color.DarkGray)
             ) {
                 Text("Menu")
             }
         }
         //Spacer(modifier = Modifier.height(56.dp))
-
 
 
         //Spacer(modifier = Modifier.height(60.dp))
@@ -142,7 +150,7 @@ fun GameScreen(
                 text = otazka.question,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
-                    .padding(16.dp),
+                    .padding(8.dp),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 maxLines = Int.MAX_VALUE,
@@ -151,46 +159,52 @@ fun GameScreen(
         }
 
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = "Skóre: $score",
-            modifier = Modifier.align(Alignment.CenterHorizontally).padding(16.dp)
-            ,fontSize = 18.sp)
-        jednaOdpoved(otazka, viewModel, 0,wasClicked,isCorrect)
-        jednaOdpoved(otazka, viewModel, 1,wasClicked,isCorrect)
-        jednaOdpoved(otazka, viewModel, 2,wasClicked,isCorrect)
-        jednaOdpoved(otazka, viewModel, 3,wasClicked,isCorrect)
+        Text(
+            text = "Skóre: $score",
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(16.dp), fontSize = 18.sp
+        )
+        jednaOdpoved(otazka, viewModel, 0, wasClicked, isCorrect)
+        jednaOdpoved(otazka, viewModel, 1, wasClicked, isCorrect)
+        jednaOdpoved(otazka, viewModel, 2, wasClicked, isCorrect)
+        jednaOdpoved(otazka, viewModel, 3, wasClicked, isCorrect)
         if (isCorrect) {
             viewModel.click()
             ukazButtonDalej(onDone = {
                 viewModel.unclick()
-                viewModel.resetQuestion() })
-        } else if (wasClicked){
-            if (!fieldToShow){
-                ukazButtonScore(onDone = {viewModel.fieldToShow()} )
+                viewModel.resetQuestion()
+            })
+        } else if (wasClicked) {
+            if (!fieldToShow) {
+                ukazButtonScore(onDone = { viewModel.fieldToShow() })
             } else {
                 vypisPole(viewModel = viewModel, navigator = navigator)
             }
-            if (viewModel.timeRemaining.value == 0){
+            if (viewModel.timeRemaining.collectAsState().value == 0) {
                 ukazButtonSpatne(onDone = {
                     navigator.navigate(MainMenu.Menu.name)
                     viewModel.resetQuestion()
                     viewModel.unclick()
                     viewModel.resetScore()
-                }, true)
-            } else{
+                }, otazka, true)
+            } else {
                 ukazButtonSpatne(onDone = {
                     navigator.navigate(MainMenu.Menu.name)
                     viewModel.resetQuestion()
                     viewModel.unclick()
                     viewModel.resetScore()
-                })
+                }, otazka)
             }
 
         }
 
     }
 }
+
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun vypisPole(viewModel: ThemeSelectionViewModel, navigator: NavController){
+fun vypisPole(viewModel: GameViewModel, navigator: NavController) {
     val meno by viewModel.meno.collectAsState()
     val score by viewModel.score.collectAsState()
     Row(
@@ -198,10 +212,19 @@ fun vypisPole(viewModel: ThemeSelectionViewModel, navigator: NavController){
             .padding(16.dp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ){
-        OutlinedTextField(value = meno,
-            onValueChange = {text -> viewModel.setMeno(text)},
-            label = { Text("Meno") }, modifier = Modifier.weight(1f))
+    ) {
+        OutlinedTextField(
+            value = meno,
+            onValueChange = { text -> viewModel.setMeno(text) },
+            label = { Text("Meno") }, modifier = Modifier.weight(1f),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.LightGray,
+                unfocusedBorderColor = Color.DarkGray,
+                focusedTextColor = Color.Black,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.Black
+            )
+        )
         Spacer(modifier = Modifier.height(3.dp))
         Button(
             onClick = {
@@ -211,7 +234,7 @@ fun vypisPole(viewModel: ThemeSelectionViewModel, navigator: NavController){
                 viewModel.resetScore()
                 //viewModel.resetQuestion()
                 navigator.navigate(MainMenu.Menu.name)
-            },colors = ButtonDefaults.buttonColors(Color.DarkGray)
+            }, colors = ButtonDefaults.buttonColors(Color.DarkGray)
         ) {
             Text("OK")
         }
@@ -222,7 +245,7 @@ fun vypisPole(viewModel: ThemeSelectionViewModel, navigator: NavController){
 @Composable
 private fun jednaOdpoved(
     otazka: Otazky,
-    viewModel: ThemeSelectionViewModel,
+    viewModel: GameViewModel,
     indexOdpovede: Int,
     clicked: Boolean,
     isCorrect: Boolean
@@ -231,10 +254,9 @@ private fun jednaOdpoved(
     Button(
 
         onClick = {
-            if (clicked && !isCorrect || clicked && isCorrect){
+            if (clicked && !isCorrect || clicked && isCorrect) {
 
-            }
-            else {
+            } else {
                 viewModel.setTimerRunning(false)
                 verifyAnswer(
                     answer = indexOdpovede,
@@ -256,7 +278,7 @@ private fun jednaOdpoved(
 fun verifyAnswer(
     answer: Int,
     otazka: Otazky,
-    viewModel: ThemeSelectionViewModel,
+    viewModel: GameViewModel,
 ) {
     viewModel.setTimerRunning(false)
     if (answer == otazka.correctAnswer) {
@@ -272,24 +294,24 @@ fun verifyAnswer(
 @Composable
 fun ukazButtonDalej(onDone: () -> Unit) {
     Spacer(modifier = Modifier.height(16.dp))
-    Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
         Text(text = "Správna odpoveď!")
     }
     Button(
         onClick = onDone,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
-        ,colors = ButtonDefaults.buttonColors(Color.DarkGray)
+            .padding(16.dp), colors = ButtonDefaults.buttonColors(Color.DarkGray)
     ) {
         Text("Ďaľšia otázka")
     }
 }
+
 @Composable
-fun ukazButtonScore(onDone: () -> Unit){
+fun ukazButtonScore(onDone: () -> Unit) {
     Spacer(modifier = Modifier.height(16.dp))
 
-    Column(modifier = Modifier.fillMaxWidth(),horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         Button(
             onClick = onDone,
             modifier = Modifier.padding(6.dp), colors = ButtonDefaults.buttonColors(Color.DarkGray)
@@ -298,21 +320,25 @@ fun ukazButtonScore(onDone: () -> Unit){
         }
     }
 }
-@Composable
-fun ukazButtonSpatne(onDone: () -> Unit, cas: Boolean = false){
-    Spacer(modifier = Modifier.height(6.dp))
-    Row (modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center){
-            if (cas){
-                Text(
-                    text = "Vypršal ti čas!"
-                )
-            } else{
-                Text(
-                    text = "Nesprávna odpoveď"
-                )
-            }
 
+@Composable
+fun ukazButtonSpatne(onDone: () -> Unit, otazka: Otazky, cas: Boolean = false) {
+    Spacer(modifier = Modifier.height(6.dp))
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        val correctAnswer = otazka.options[otazka.correctAnswer]
+        if (cas) {
+            Text(
+                text = "Vypršal ti čas! Správna odpoveď bola: ${correctAnswer}"
+            )
+        } else {
+
+            Text(
+                text = "Zle! Správna odpoveď bola: ${correctAnswer}"
+            )
+        }
 
 
     }
