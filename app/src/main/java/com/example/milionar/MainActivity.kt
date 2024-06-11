@@ -46,8 +46,18 @@ class MainActivity : ComponentActivity() {
                     val themeViewModel = ThemeSelectionViewModel()
                     val difficultyViewModel = DifficultyViewModel()
                     val scoreboardViewModel = ScoreboardViewModel(scoreManager)
-                    val gameViewModel = GameViewModel(otazky,themeViewModel,difficultyViewModel,scoreboardViewModel)
-                    MilionarApp(themeViewModel,gameViewModel,difficultyViewModel,scoreboardViewModel)
+                    val gameViewModel = GameViewModel(
+                        otazky,
+                        themeViewModel,
+                        difficultyViewModel,
+                        scoreboardViewModel
+                    )
+                    MilionarApp(
+                        themeViewModel,
+                        gameViewModel,
+                        difficultyViewModel,
+                        scoreboardViewModel
+                    )
                 }
             }
         }

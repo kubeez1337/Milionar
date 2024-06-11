@@ -59,7 +59,6 @@ fun MilionarApp(
 ) {
     val selectedDifficulty by viewModel.selectedDifficulty.collectAsState()
     val selectedTheme by viewModel.selectedTheme.collectAsState()
-    //val selectedDifficulty = viewModel.selectedDifficulty
     scoreViewModel.resetHighScore()
     NavHost(navController = navController, startDestination = MainMenu.Menu.name) {
         composable(MainMenu.Menu.name) {
@@ -68,7 +67,6 @@ fun MilionarApp(
                 selectedDifficulty = selectedDifficulty,
                 onDifficultySelected = {
                     difficultyViewModel.setDifficulty(it)
-                    //viewModel.setQuestions()
                 },
                 onSelectThemeClick = {
                     navController.navigate(MainMenu.Tema.name)
@@ -144,7 +142,7 @@ fun MainMenuScreen(
                     modifier = Modifier
                         .padding(bottom = 8.dp)
                         .fillMaxWidth()
-                    .wrapContentWidth(Alignment.CenterHorizontally)
+                        .wrapContentWidth(Alignment.CenterHorizontally)
                 )
 
                 Text("Kvíz", style = MaterialTheme.typography.h6)
@@ -184,7 +182,7 @@ fun MainMenuScreen(
                 Text("Zvoľ obtiažnosť", style = MaterialTheme.typography.h6)
                 DifficultySelection(selectedDifficulty, onDifficultySelected)
                 var them = selectedTheme
-                if (them.equals("")){
+                if (them.equals("")) {
                     them = "Random"
                 }
                 Spacer(modifier = Modifier.height(32.dp))
@@ -203,15 +201,18 @@ fun DifficultySelection(
         DifficultyOption(
             text = "Lahka",
             selected = selectedDifficulty == "Lahka",
-            onSelected = onDifficultySelected)
+            onSelected = onDifficultySelected
+        )
         DifficultyOption(
             text = "Stredna",
             selected = selectedDifficulty == "Stredna",
-            onSelected = onDifficultySelected)
+            onSelected = onDifficultySelected
+        )
         DifficultyOption(
             text = "Tazka",
             selected = selectedDifficulty == "Tazka",
-            onSelected = onDifficultySelected)
+            onSelected = onDifficultySelected
+        )
     }
 }
 

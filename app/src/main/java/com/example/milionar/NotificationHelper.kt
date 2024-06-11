@@ -9,7 +9,6 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 
 class NotificationHelper(private val context: Context) {
-
     private val channellID = "com.example.milionar.channel"
 
     init {
@@ -29,6 +28,7 @@ class NotificationHelper(private val context: Context) {
             notificationManager.createNotificationChannel(channel)
         }
     }
+
     fun createNotification(title: String, message: String) {
         val notificationId = 45
         val notification = NotificationCompat.Builder(context, channellID)
@@ -39,7 +39,8 @@ class NotificationHelper(private val context: Context) {
             .setCategory(NotificationCompat.CATEGORY_CALL)
             .build()
 
-        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(notificationId, notification)
     }
 }

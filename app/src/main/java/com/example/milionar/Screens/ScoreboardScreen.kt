@@ -35,10 +35,11 @@ fun ScoreboardScreen(
         viewModel.setShowScore()
     }
     val peachPink = Color(0xFFFFDAB9)
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(peachPink)) {
-        // Title
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(peachPink)
+    ) {
         Spacer(modifier = Modifier.height(24.dp))
         Text(
             text = "Top 10 Rebríček",
@@ -49,7 +50,6 @@ fun ScoreboardScreen(
             fontSize = 20.sp
         )
         Spacer(modifier = Modifier.height(8.dp))
-
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
@@ -62,8 +62,6 @@ fun ScoreboardScreen(
                 }
             }
         }
-
-        // Buttons Row
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -77,8 +75,10 @@ fun ScoreboardScreen(
                 Text(text = "Reset")
             }
 
-            Button(onClick = { nav.navigate(MainMenu.Menu.name) },
-                colors = ButtonDefaults.buttonColors(Color.DarkGray)) {
+            Button(
+                onClick = { nav.navigate(MainMenu.Menu.name) },
+                colors = ButtonDefaults.buttonColors(Color.DarkGray)
+            ) {
                 Text(text = "Menu")
             }
         }

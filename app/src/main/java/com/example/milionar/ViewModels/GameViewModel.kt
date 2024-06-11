@@ -9,10 +9,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class GameViewModel(vsetkyOtazky: Otazka,
-                    themeViewModel: ThemeSelectionViewModel,
-                    difficultyViewModel: DifficultyViewModel,
-                    scoreboardViewModel: ScoreboardViewModel) : ViewModel() {
+class GameViewModel(
+    vsetkyOtazky: Otazka,
+    themeViewModel: ThemeSelectionViewModel,
+    difficultyViewModel: DifficultyViewModel,
+    scoreboardViewModel: ScoreboardViewModel
+) : ViewModel() {
     val scoreboardViewModel = scoreboardViewModel
     val selectedTheme = themeViewModel.selectedTheme
     val selectedDifficulty = difficultyViewModel.selectedDifficulty
@@ -23,7 +25,8 @@ class GameViewModel(vsetkyOtazky: Otazka,
     private val _wasclicked = MutableStateFlow<Boolean>(false)
     val wasclicked: StateFlow<Boolean> = _wasclicked.asStateFlow()
     val vsetkyOtazky = vsetkyOtazky
-    var ot = vsetkyOtazky.generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
+    var ot =
+        vsetkyOtazky.generateQuestions(selectedTheme.value, selectedDifficulty.value).shuffled()
     private val _selectedQuestion = MutableStateFlow<Otazky>(ot.get(0))
     var selectedQuestion: StateFlow<Otazky> = _selectedQuestion.asStateFlow()
     var indexOtazky = 0
@@ -34,65 +37,81 @@ class GameViewModel(vsetkyOtazky: Otazka,
     private val _scoreField = MutableStateFlow<Boolean>(false)
     val scoreField: StateFlow<Boolean> = _scoreField.asStateFlow()
     private val _meno = MutableStateFlow<String>("")
-    val meno : StateFlow<String> = _meno.asStateFlow()
+    val meno: StateFlow<String> = _meno.asStateFlow()
 
     fun incrementScore() {
         _score.value++
     }
-    fun resetScore(){
+
+    fun resetScore() {
         _score.value = 0
     }
+
     fun setCorrect() {
         _correct.value = true
     }
+
     fun setIncorrect() {
         _correct.value = false
     }
-    fun setQuestions(){
-        ot = vsetkyOtazky.generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
+
+    fun setQuestions() {
+        ot =
+            vsetkyOtazky.generateQuestions(selectedTheme.value, selectedDifficulty.value).shuffled()
         indexOtazky = 0
         _selectedQuestion.value = ot.get(indexOtazky)
     }
-    fun resetQuestion(){
+
+    fun resetQuestion() {
         ++indexOtazky
-        if (indexOtazky == ot.size){
-            ot = vsetkyOtazky.generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
+        if (indexOtazky == ot.size) {
+            ot = vsetkyOtazky.generateQuestions(selectedTheme.value, selectedDifficulty.value)
+                .shuffled()
             indexOtazky = 0
         }
         setIncorrect()
-        if (ot.get(indexOtazky) == _selectedQuestion.value){
+        if (ot.get(indexOtazky) == _selectedQuestion.value) {
             resetQuestion()
             return
         }
         _selectedQuestion.value = ot.get(indexOtazky)
     }
-    fun click(){
+
+    fun click() {
         _wasclicked.value = true
     }
-    fun unclick(){
+
+    fun unclick() {
         _wasclicked.value = false
     }
-    fun fieldToShow(){
+
+    fun fieldToShow() {
         _scoreField.value = true
     }
-    fun fieldToHide(){
+
+    fun fieldToHide() {
         _scoreField.value = false
     }
-    fun setMeno(meno: String){
+
+    fun setMeno(meno: String) {
         _meno.value = meno
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
-    fun saveScore(meno: String, score: Int){
+    fun saveScore(meno: String, score: Int) {
         scoreboardViewModel.saveScore(meno, score, selectedTheme.value)
         setMeno("")
     }
-    fun setTimerRunning(bool: Boolean){
+
+    fun setTimerRunning(bool: Boolean) {
         _isTimerRunning.value = bool
     }
-    fun resetTimeRemaining(){
+
+    fun resetTimeRemaining() {
         _timeRemaining.value = 15
     }
-    fun decrementTimeRemaining(){
+
+    fun decrementTimeRemaining() {
         _timeRemaining.value--
     }
 }

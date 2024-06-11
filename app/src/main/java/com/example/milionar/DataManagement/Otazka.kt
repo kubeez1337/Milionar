@@ -5,9 +5,9 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 
-class Otazka(private val context: Context){
+class Otazka(private val context: Context) {
     private val fileName = "otazky.json"
-    fun validateFilter(zoznam: List<Otazky>, theme: String, difficulty: String) : List<Otazky> {
+    fun validateFilter(zoznam: List<Otazky>, theme: String, difficulty: String): List<Otazky> {
         var res = mutableListOf<Otazky>()
         for (i in zoznam) {
             if (theme == "") {
@@ -26,10 +26,12 @@ class Otazka(private val context: Context){
         }
         return res
     }
-    fun generateQuestions(theme: String, difficulty: String) : List<Otazky> {
+
+    fun generateQuestions(theme: String, difficulty: String): List<Otazky> {
         val otazk = loadQuestions()
         return validateFilter(otazk, theme, difficulty)
     }
+
     fun loadQuestions(): List<Otazky> {
         return try {
             val jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }

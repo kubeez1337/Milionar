@@ -36,7 +36,7 @@ fun ThemeSelectionScreen(
 ) {
     val selectedTheme by viewModel.selectedTheme.collectAsState()
     val peachPink = Color(0xFFFFDAB9)
-    val themes = listOf("Matematika", "Veda", "História", "Geografia","Informatika", "Random")
+    val themes = listOf("Matematika", "Veda", "História", "Geografia", "Informatika", "Random")
     Column(
         modifier = Modifier
             .fillMaxSize()

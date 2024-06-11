@@ -12,7 +12,7 @@ import java.io.File
 class ScoreManager(private val context: Context) {
     private val fileName = "scores.json"
     var highScore = 0
-    fun saveScore(score : Score) {
+    fun saveScore(score: Score) {
         val scores = loadScores().toMutableList()
         scores.add(score)
         scores.sortByDescending { it.score }
@@ -22,17 +22,17 @@ class ScoreManager(private val context: Context) {
         val json = Json.encodeToString(scores)
         File(context.filesDir, fileName).writeText(json)
     }
+
     fun createNotification(title: String, message: String) {
         val notificationHelper = NotificationHelper(context)
         notificationHelper.createNotification(title, message)
     }
-    fun reloadHighScore(){
+
+    fun reloadHighScore() {
         var listt = loadScores()
-        if (listt.isNotEmpty()){
-        highScore = listt[0].score}
-    }
-    fun getHighScore(): Int {
-        return highScore
+        if (listt.isNotEmpty()) {
+            highScore = listt[0].score
+        }
     }
 
     fun loadScores(): List<Score> {
@@ -44,7 +44,8 @@ class ScoreManager(private val context: Context) {
             emptyList()
         }
     }
-    fun resetScoreboard(){
+
+    fun resetScoreboard() {
         val scores = emptyList<Score>()
         val json = Json.encodeToString(scores)
         File(context.filesDir, fileName).writeText(json)

@@ -53,6 +53,7 @@ CASOMIERA - Done
 UI - Done / pomenit farby buttonov
 OTAZKY JSON / SQLITE - done
 zobrazenie spravnej odpovede - done
+notifikacia - done
 Pridanie otazky
 Dotuknutie viewmodelov - done
 ODOMYKANIE TEM / mozno
@@ -64,19 +65,11 @@ fun GameScreen(
     onDone: () -> Unit,
     navigator: NavController
 ) {
-    val selectedTheme by viewModel.selectedTheme.collectAsState()
-    val selectedDifficulty by viewModel.selectedDifficulty.collectAsState()
     val isCorrect by viewModel.correct.collectAsState()
-    val theme by viewModel.selectedTheme.collectAsState()
-    val difficulty by viewModel.selectedDifficulty.collectAsState()
-    //val ot = generateQuestions(theme,difficulty)
     val otazka by viewModel.selectedQuestion.collectAsState()
     val score by viewModel.score.collectAsState()
     val wasClicked by viewModel.wasclicked.collectAsState()
     val fieldToShow by viewModel.scoreField.collectAsState()
-    val meno by viewModel.meno.collectAsState()
-    val timeRemaining by viewModel.timeRemaining.collectAsState()
-    val isTimerRunning by viewModel.isTimerRunning.collectAsState()
     var startTime = System.currentTimeMillis()
     var animationProgress by remember { mutableStateOf(1f) }
     val peachPink = Color(0xFFFFDAB9)
@@ -136,11 +129,6 @@ fun GameScreen(
                 Text("Menu")
             }
         }
-        //Spacer(modifier = Modifier.height(56.dp))
-
-
-        //Spacer(modifier = Modifier.height(60.dp))
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -230,9 +218,9 @@ fun vypisPole(viewModel: GameViewModel, navigator: NavController) {
             onClick = {
                 viewModel.unclick()
                 viewModel.fieldToHide()
+                navigator.navigate(MainMenu.Menu.name)
                 viewModel.saveScore(meno, score)
                 viewModel.resetScore()
-                navigator.navigate(MainMenu.Menu.name)
             }, colors = ButtonDefaults.buttonColors(Color.DarkGray)
         ) {
             Text("OK")
@@ -284,7 +272,6 @@ fun verifyAnswer(
         viewModel.incrementScore()
         viewModel.setCorrect()
     } else {
-        //viewModel.resetScore()
         viewModel.click()
         viewModel.setIncorrect()
     }
