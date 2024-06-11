@@ -68,7 +68,7 @@ fun GameScreen(
     val isCorrect by viewModel.correct.collectAsState()
     val theme by viewModel.selectedTheme.collectAsState()
     val difficulty by viewModel.selectedDifficulty.collectAsState()
-    val ot = generateQuestions(theme,difficulty)
+    //val ot = generateQuestions(theme,difficulty)
     val otazka by viewModel.selectedQuestion.collectAsState()
     val score by viewModel.score.collectAsState()
     val wasClicked by viewModel.wasclicked.collectAsState()

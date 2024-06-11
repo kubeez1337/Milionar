@@ -1,0 +1,760 @@
+[
+  {
+    "id": 1,
+    "question": "Koľko je 5 + 3?",
+    "options": ["6", "7", "8", "9"],
+    "correctAnswer": 2,
+    "category": "Matematika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 2,
+    "question": "Koľko je 10 - 4?",
+    "options": ["5", "6", "7", "8"],
+    "correctAnswer": 1,
+    "category": "Matematika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 3,
+    "question": "Koľko je 2 * 6?",
+    "options": ["10", "11", "12", "13"],
+    "correctAnswer": 2,
+    "category": "Matematika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 4,
+    "question": "Koľko je 9 / 3?",
+    "options": ["2", "3", "4", "5"],
+    "correctAnswer": 1,
+    "category": "Matematika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 5,
+    "question": "Koľko je 7 + 8?",
+    "options": ["14", "15", "16", "17"],
+    "correctAnswer": 1,
+    "category": "Matematika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 6,
+    "question": "Koľko je 12 - 7?",
+    "options": ["4", "5", "6", "7"],
+    "correctAnswer": 1,
+    "category": "Matematika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 7,
+    "question": "Koľko je 3 * 4?",
+    "options": ["10", "11", "12", "13"],
+    "correctAnswer": 2,
+    "category": "Matematika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 8,
+    "question": "Koľko je 16 / 4?",
+    "options": ["2", "3", "4", "5"],
+    "correctAnswer": 2,
+    "category": "Matematika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 9,
+    "question": "Koľko je 5 * 5?",
+    "options": ["20", "25", "30", "35"],
+    "correctAnswer": 1,
+    "category": "Matematika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 10,
+    "question": "Koľko je 14 - 9?",
+    "options": ["3", "4", "5", "6"],
+    "correctAnswer": 2,
+    "category": "Matematika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 11,
+    "question": "Koľko je 25 + 17?",
+    "options": ["40", "41", "42", "43"],
+    "correctAnswer": 3,
+    "category": "Matematika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 12,
+    "question": "Koľko je 100 - 45?",
+    "options": ["50", "55", "60", "65"],
+    "correctAnswer": 1,
+    "category": "Matematika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 13,
+    "question": "Koľko je 12 * 11?",
+    "options": ["120", "121", "132", "143"],
+    "correctAnswer": 2,
+    "category": "Matematika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 14,
+    "question": "Koľko je 144 / 12?",
+    "options": ["10", "11", "12", "13"],
+    "correctAnswer": 2,
+    "category": "Matematika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 15,
+    "question": "Koľko je 8 * 15?",
+    "options": ["120", "130", "140", "150"],
+    "correctAnswer": 0,
+    "category": "Matematika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 16,
+    "question": "Koľko je 256 - 128?",
+    "options": ["118", "128", "138", "148"],
+    "correctAnswer": 1,
+    "category": "Matematika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 17,
+    "question": "Koľko je 81 / 9?",
+    "options": ["8", "9", "10", "11"],
+    "correctAnswer": 1,
+    "category": "Matematika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 18,
+    "question": "Koľko je 17 * 17?",
+    "options": ["279", "289", "299", "309"],
+    "correctAnswer": 1,
+    "category": "Matematika",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 19,
+    "question": "Koľko je 1234 + 5678?",
+    "options": ["6812", "6912", "7012", "7112"],
+    "correctAnswer": 2,
+    "category": "Matematika",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 20,
+    "question": "Koľko je 9876 - 5432?",
+    "options": ["4344", "4444", "4544", "4644"],
+    "correctAnswer": 1,
+    "category": "Matematika",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 21,
+    "question": "Ktorý plyn je najviac zastúpený v zemskej atmosfére?",
+    "options": ["Kyslík", "Dusík", "Vodík", "Oxid uhličitý"],
+    "correctAnswer": 1,
+    "category": "Veda",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 22,
+    "question": "Koľko planét má slnečná sústava?",
+    "options": ["7", "8", "9", "10"],
+    "correctAnswer": 1,
+    "category": "Veda",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 23,
+    "question": "Ktorý prvok má chemickú značku O?",
+    "options": ["Zlato", "Kyslík", "Olovo", "Vápnik"],
+    "correctAnswer": 1,
+    "category": "Veda",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 24,
+    "question": "Aké je chemické zloženie vody?",
+    "options": ["H2O", "CO2", "O2", "CH4"],
+    "correctAnswer": 0,
+    "category": "Veda",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 25,
+    "question": "Ktorá planéta je známa ako Červená planéta?",
+    "options": ["Venuša", "Mars", "Jupiter", "Saturn"],
+    "correctAnswer": 1,
+    "category": "Veda",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 26,
+    "question": "Koľko chromozómov má človek?",
+    "options": ["42", "44", "46", "48"],
+    "correctAnswer": 2,
+    "category": "Veda",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 27,
+    "question": "Ktorý prvok má najvyšší bod varu?",
+    "options": ["Voda", "Železo", "Zlato", "Tungsten"],
+    "correctAnswer": 3,
+    "category": "Veda",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 28,
+    "question": "Aký je chemický vzorec stolnej soli?",
+    "options": ["NaCl", "KCl", "LiCl", "CaCl"],
+    "correctAnswer": 0,
+    "category": "Veda",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 29,
+    "question": "Kto je považovaný za otca modernej fyziky?",
+    "options": ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Galileo Galilei"],
+    "correctAnswer": 1,
+    "category": "Veda",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 30,
+    "question": "Koľko mesiacov má planéta Saturn?",
+    "options": ["62", "64", "66", "68"],
+    "correctAnswer": 0,
+    "category": "Veda",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 31,
+    "question": "Ktorý je najťažší prvok v periodickej tabuľke?",
+    "options": ["Uran", "Plutonium", "Osmium", "Kadmium"],
+    "correctAnswer": 2,
+    "category": "Veda",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 32,
+    "question": "Kto formuloval zákon univerzálnej gravitácie?",
+    "options": ["Isaac Newton", "Albert Einstein", "Niels Bohr", "Galileo Galilei"],
+    "correctAnswer": 0,
+    "category": "Veda",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 33,
+    "question": "Čo je jednotkou elektrického prúdu?",
+    "options": ["Volt", "Ampér", "Ohm", "Watt"],
+    "correctAnswer": 1,
+    "category": "Veda",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 34,
+    "question": "Ktorý organ je najväčší v ľudskom tele?",
+    "options": ["Mozog", "Srdce", "Pokožka", "Pečeň"],
+    "correctAnswer": 2,
+    "category": "Veda",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 35,
+    "question": "Ktorý plyn je nevyhnutný pre dýchanie?",
+    "options": ["Dusík", "Kyslík", "Vodík", "Oxid uhličitý"],
+    "correctAnswer": 1,
+    "category": "Veda",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 36,
+    "question": "Čo je najmenšia jednotka hmoty?",
+    "options": ["Proton", "Neutron", "Elektrón", "Atóm"],
+    "correctAnswer": 3,
+    "category": "Veda",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 37,
+    "question": "Kto objavil penicilín?",
+    "options": ["Louis Pasteur", "Marie Curie", "Alexander Fleming", "Gregor Mendel"],
+    "correctAnswer": 2,
+    "category": "Veda",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 38,
+    "question": "Čo je Einsteinova slávna rovnice?",
+    "options": ["E=mc^2", "a^2 + b^2 = c^2", "F=ma", "pV=nRT"],
+    "correctAnswer": 0,
+    "category": "Veda",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 39,
+    "question": "Ktorý vedec je známy pre svoje tri pohybové zákony?",
+    "options": ["Galileo Galilei", "Nikola Tesla", "Isaac Newton", "Albert Einstein"],
+    "correctAnswer": 2,
+    "category": "Veda",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 40,
+    "question": "Čo je H2SO4?",
+    "options": ["Kyselina sírová", "Kyselina chlorovodíková", "Kyselina dusičná", "Kyselina fosforečná"],
+    "correctAnswer": 0,
+    "category": "Veda",
+    "difficulty": "Tazka"
+  },
+  {
+  "id": 41,
+  "question": "Kto bol prvým prezidentom USA?",
+  "options": ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "John Adams"],
+  "correctAnswer": 0,
+  "category": "História",
+  "difficulty": "Lahka"
+  },
+  {
+    "id": 42,
+    "question": "V ktorom roku sa začala druhá svetová vojna?",
+    "options": ["1914", "1939", "1941", "1945"],
+    "correctAnswer": 1,
+    "category": "História",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 43,
+    "question": "Kto bol dobyvateľom Inkskej ríše?",
+    "options": ["Hernán Cortés", "Francisco Pizarro", "Vasco da Gama", "Ferdinand Magellan"],
+    "correctAnswer": 1,
+    "category": "História",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 44,
+    "question": "Kedy sa skončila prvá svetová vojna?",
+    "options": ["1918", "1939", "1945", "1963"],
+    "correctAnswer": 0,
+    "category": "História",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 45,
+    "question": "Kto napísal Ilijadu a Odyseu?",
+    "options": ["Homer", "Sofokles", "Platón", "Aristoteles"],
+    "correctAnswer": 0,
+    "category": "História",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 46,
+    "question": "Ktorá krajina bola kolonizovaná Britmi v roku 1788?",
+    "options": ["Indie", "Kanada", "Austrália", "Južná Afrika"],
+    "correctAnswer": 2,
+    "category": "História",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 47,
+    "question": "Kto bol hlavou nacistického Nemecka počas druhej svetovej vojny?",
+    "options": ["Joseph Stalin", "Adolf Hitler", "Winston Churchill", "Benito Mussolini"],
+    "correctAnswer": 1,
+    "category": "História",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 48,
+    "question": "Ktoré mesto bolo zničené výbuchom sopky Vezuv v roku 79 n.l.?",
+    "options": ["Pompeje", "Rím", "Neapol", "Atény"],
+    "correctAnswer": 0,
+    "category": "História",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 49,
+    "question": "Kto bol posledným ruským cárom?",
+    "options": ["Peter I.", "Alexander II.", "Mikuláš II.", "Ivan Hrozný"],
+    "correctAnswer": 2,
+    "category": "História",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 50,
+    "question": "V ktorom roku sa uskutočnila Francúzska revolúcia?",
+    "options": ["1776", "1789", "1804", "1812"],
+    "correctAnswer": 1,
+    "category": "História",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 51,
+    "question": "Kto bol prvým cisárom Číny?",
+    "options": ["Kublajchán", "Qin Shi Huang", "Sun Jat-sen", "Mao Ce-tung"],
+    "correctAnswer": 1,
+    "category": "História",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 52,
+    "question": "Ktorá bitka sa považuje za rozhodujúci moment Napoleonských vojen?",
+    "options": ["Bitka pri Waterloo", "Bitka pri Trafalgare", "Bitka pri Borodine", "Bitka pri Austerlitze"],
+    "correctAnswer": 0,
+    "category": "História",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 53,
+    "question": "Kto bol objaviteľom Ameriky v roku 1492?",
+    "options": ["Leif Erikson", "Ferdinand Magellan", "Christopher Columbus", "James Cook"],
+    "correctAnswer": 2,
+    "category": "História",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 54,
+    "question": "Ktorá vojna sa odohrávala v rokoch 1861 až 1865 v USA?",
+    "options": ["Americká revolúcia", "Španielsko-americká vojna", "Občianska vojna", "Prvá svetová vojna"],
+    "correctAnswer": 2,
+    "category": "História",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 55,
+    "question": "Kto bol autorom Deklarácie nezávislosti USA?",
+    "options": ["George Washington", "John Adams", "Thomas Jefferson", "Benjamin Franklin"],
+    "correctAnswer": 2,
+    "category": "História",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 56,
+    "question": "Ktorá civilizácia postavila pyramídy v Gíze?",
+    "options": ["Májovia", "Aztékovia", "Inkovia", "Egypťania"],
+    "correctAnswer": 3,
+    "category": "História",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 57,
+    "question": "Ktoré kráľovstvo bolo domovom legendárneho kráľa Artuša?",
+    "options": ["Kráľovstvo Nórska", "Kráľovstvo Anglicka", "Kráľovstvo Škótska", "Kráľovstvo Walesu"],
+    "correctAnswer": 1,
+    "category": "História",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 58,
+    "question": "Kedy padol Berlínsky múr?",
+    "options": ["1987", "1988", "1989", "1990"],
+    "correctAnswer": 2,
+    "category": "História",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 59,
+    "question": "Kto bol prvým človekom na Mesiaci?",
+    "options": ["Yuri Gagarin", "Buzz Aldrin", "Michael Collins", "Neil Armstrong"],
+    "correctAnswer": 3,
+    "category": "História",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 60,
+    "question": "Ktorá kultúra vytvorila Machu Picchu?",
+    "options": ["Aztékovia", "Májovia", "Inkovia", "Olmékovia"],
+    "correctAnswer": 2,
+    "category": "História",
+    "difficulty": "Stredna"
+  },{
+  "id": 61,
+  "question": "Kedy začala Tridsaťročná vojna?",
+  "options": ["1618", "1620", "1648", "1660"],
+  "correctAnswer": 0,
+  "category": "História",
+  "difficulty": "Tazka"
+},
+  {
+    "id": 62,
+    "question": "Kto bol posledným veľkým vládcom Mughalskej ríše?",
+    "options": ["Akbar Veľký", "Shah Jahan", "Aurangzeb", "Babur"],
+    "correctAnswer": 2,
+    "category": "História",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 63,
+    "question": "Ktorý rok sa považuje za začiatok Veľkej depresie?",
+    "options": ["1927", "1928", "1929", "1930"],
+    "correctAnswer": 2,
+    "category": "História",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 64,
+    "question": "Kto bol vodcom Kubánskej revolúcie v roku 1959?",
+    "options": ["Ernesto 'Che' Guevara", "Fidel Castro", "Raúl Castro", "Camilo Cienfuegos"],
+    "correctAnswer": 1,
+    "category": "História",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 65,
+    "question": "Ktorá dynastia vládla v Číne počas Zlatého veku čínskej civilizácie?",
+    "options": ["Han", "Tang", "Song", "Ming"],
+    "correctAnswer": 1,
+    "category": "História",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 66,
+    "question": "Aké je hlavné mesto Francúzska?",
+    "options": ["Rím", "Madrid", "Paríž", "Berlín"],
+    "correctAnswer": 2,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 67,
+    "question": "Aká je najdlhšia rieka na svete?",
+    "options": ["Amazonka", "Níl", "Mississippi", "Yangtze"],
+    "correctAnswer": 1,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 68,
+    "question": "Ktorý kontinent je najväčší podľa rozlohy?",
+    "options": ["Afrika", "Európa", "Severná Amerika", "Ázia"],
+    "correctAnswer": 3,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 69,
+    "question": "Koľko oceánov existuje na Zemi?",
+    "options": ["3", "5", "7", "9"],
+    "correctAnswer": 1,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 70,
+    "question": "Ktorá krajina má najväčšiu populáciu?",
+    "options": ["Indie", "Spojené štáty", "Čína", "Rusko"],
+    "correctAnswer": 2,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 71,
+    "question": "Aké je hlavné mesto Kanady?",
+    "options": ["Toronto", "Vancouver", "Ottawa", "Montreal"],
+    "correctAnswer": 2,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 72,
+    "question": "Ktorý štát má najviac jazier na svete?",
+    "options": ["Kanada", "Brazília", "Spojené štáty", "Rusko"],
+    "correctAnswer": 0,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 73,
+    "question": "Aké je hlavné mesto Japonska?",
+    "options": ["Kyoto", "Osaka", "Tokio", "Nagoya"],
+    "correctAnswer": 2,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 74,
+    "question": "Ktorá je najväčšia púšť na svete?",
+    "options": ["Sahara", "Arabská púšť", "Gobi", "Antarktická púšť"],
+    "correctAnswer": 0,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 75,
+    "question": "Ktoré je najmenšie svetové more?",
+    "options": ["Baltské more", "Čierne more", "Severné more", "Japonské more"],
+    "correctAnswer": 0,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 76,
+    "question": "Ktorý oceán je najhlbší?",
+    "options": ["Atlantický oceán", "Indický oceán", "Tichý oceán", "Severný ľadový oceán"],
+    "correctAnswer": 2,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 77,
+    "question": "Ktoré pohorie je najdlhšie na svete?",
+    "options": ["Andy", "Rocky Mountains", "Himaláje", "Ural"],
+    "correctAnswer": 0,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 78,
+    "question": "Aké je najväčšie vnútrozemské jazero na svete?",
+    "options": ["Kaspické more", "Baikal", "Mŕtve more", "Aralské jazero"],
+    "correctAnswer": 0,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 79,
+    "question": "Aké je hlavné mesto Austrálie?",
+    "options": ["Sydney", "Melbourne", "Perth", "Canberra"],
+    "correctAnswer": 3,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 80,
+    "question": "Ktorý štát v USA je najväčší podľa rozlohy?",
+    "options": ["Texas", "Aljaška", "Kalifornia", "Montana"],
+    "correctAnswer": 1,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 81,
+    "question": "Ktorá rieka preteká cez Paríž?",
+    "options": ["Dunaj", "Thames", "Seina", "Rýn"],
+    "correctAnswer": 2,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 82,
+    "question": "Ktorý kontinent má najmenšiu populáciu?",
+    "options": ["Antarktída", "Austrália", "Južná Amerika", "Európa"],
+    "correctAnswer": 0,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 83,
+    "question": "Ktorý štát v Južnej Amerike je najväčší podľa rozlohy?",
+    "options": ["Argentína", "Brazília", "Peru", "Kolumbia"],
+    "correctAnswer": 1,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 84,
+    "question": "Ktoré jazero je najhlbšie na svete?",
+    "options": ["Baikal", "Tanganika", "Viktóriino jazero", "Superiórne jazero"],
+    "correctAnswer": 0,
+    "category": "Geografia",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 85,
+    "question": "Ktorá krajina má najviac susedov na svete?",
+    "options": ["Rusko", "Čína", "India", "Brazília"],
+    "correctAnswer": 1,
+    "category": "Geografia",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 86,
+    "question": "Ktorá hora je najvyššia na africkom kontinente?",
+    "options": ["Kilimandžáro", "Mount Kenya", "Ras Dashen", "Mount Elgon"],
+    "correctAnswer": 0,
+    "category": "Geografia",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 87,
+    "question": "Ktoré mesto je známe ako 'večné mesto'?",
+    "options": ["Atény", "Jeruzalem", "Rím", "Káhira"],
+    "correctAnswer": 2,
+    "category": "Geografia",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 88,
+    "question": "Ktorá krajina je najväčším výrobcom kávy na svete?",
+    "options": ["Kolumbia", "Etiópia", "Vietnám", "Brazília"],
+    "correctAnswer": 3,
+    "category": "Geografia",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 89,
+    "question": "Ktorá rieka preteká cez Londýn?",
+    "options": ["Temža", "Seina", "Rýn", "Elba"],
+    "correctAnswer": 0,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 90,
+    "question": "Ktorý ostrovný štát je najväčší na svete?",
+    "options": ["Indonézia", "Madagaskar", "Grónsko", "Japonsko"],
+    "correctAnswer": 2,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  }, {
+  "id": 91,
+  "question": "Ktorý je najväčší svetový oceán podľa rozlohy?",
+  "options": ["Atlantický oceán", "Indický oceán", "Tichý oceán", "Severný ľadový oceán"],
+  "correctAnswer": 2,
+  "category": "Geografia",
+  "difficulty": "Lahka"
+},
+  {
+    "id": 92,
+    "question": "Aká je najväčšia krajina v Afrike podľa rozlohy?",
+    "options": ["Alžírsko", "Kongo", "Sudán", "Nigéria"],
+    "correctAnswer": 0,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 93,
+    "question": "Aký je hlavný jazyk v Brazílii?",
+    "options": ["Španielčina", "Francúzština", "Portugalčina", "Angličtina"],
+    "correctAnswer": 2,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 94,
+    "question": "Ktorá rieka je najdlhšia v Európe?",
+    "options": ["Dunaj", "Rýn", "Volga", "Temža"],
+    "correctAnswer": 2,
+    "category": "Geografia",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 95,
+    "question": "Aká je najväčšia krajina v Južnej Amerike podľa rozlohy?",
+    "options": ["Argentína", "Brazília", "Peru", "Kolumbia"],
+    "correctAnswer": 1,
+    "category": "Geografia",
+    "difficulty": "Lahka"
+  }
+]

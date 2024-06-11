@@ -33,6 +33,7 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         val scoreManager = ScoreManager(this)
+        val otazky = Otazka(this)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    MilionarApp(viewModel = ThemeSelectionViewModel(scoreManager))
+                    MilionarApp(viewModel = ThemeSelectionViewModel(scoreManager,otazky))
                     /*
                     DifficultySelection(
                         selectedDifficulty = selectedDifficulty.toString(),

@@ -11,7 +11,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.random.Random
 
-class ThemeSelectionViewModel(scoreManager: ScoreManager) : ViewModel() {
+class ThemeSelectionViewModel(scoreManager: ScoreManager, vsetkyOtazky: Otazka) : ViewModel() {
     private val _selectedTheme = MutableStateFlow<String>("")
     private val _selectedDifficulty = MutableStateFlow<String>("")
     val selectedTheme: StateFlow<String> = _selectedTheme.asStateFlow()
@@ -22,7 +22,8 @@ class ThemeSelectionViewModel(scoreManager: ScoreManager) : ViewModel() {
     val correct: StateFlow<Boolean> = _correct.asStateFlow()
     private val _wasclicked = MutableStateFlow<Boolean>(false)
     val wasclicked: StateFlow<Boolean> = _wasclicked.asStateFlow()
-    var ot = generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
+    val vsetkyOtazky = vsetkyOtazky
+    var ot = vsetkyOtazky.generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
     private val _selectedQuestion = MutableStateFlow<Otazky>(ot.get(0))
     var selectedQuestion: StateFlow<Otazky> = _selectedQuestion.asStateFlow()
     var indexOtazky = 0
@@ -54,14 +55,14 @@ class ThemeSelectionViewModel(scoreManager: ScoreManager) : ViewModel() {
         _correct.value = false
     }
     fun setQuestions(){
-        ot = generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
+        ot = vsetkyOtazky.generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
         indexOtazky = 0
         _selectedQuestion.value = ot.get(indexOtazky)
     }
     fun resetQuestion(){
         ++indexOtazky
         if (indexOtazky == ot.size){
-            ot = generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
+            ot = vsetkyOtazky.generateQuestions(selectedTheme.value,selectedDifficulty.value).shuffled()
             indexOtazky = 0
         }
         setIncorrect()
