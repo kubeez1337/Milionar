@@ -26,6 +26,13 @@ class ScoreboardViewModel(scoreManager : ScoreManager): ViewModel() {
             scoreboard.createNotification("Milionar Highscore!","Gratulujem ${meno}, ziskal si highscore!")
         }
     }
+    fun resetHighScore(){
+        scoreboard.reloadHighScore()
+        setHighScore()
+    }
+    fun setHighScore(){
+        _highScore.value = scoreboard.getHighScore()
+    }
     fun setShowScore(){
         _showScore.value = true
     }

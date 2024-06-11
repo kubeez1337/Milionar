@@ -60,6 +60,7 @@ fun MilionarApp(
     val selectedDifficulty by viewModel.selectedDifficulty.collectAsState()
     val selectedTheme by viewModel.selectedTheme.collectAsState()
     //val selectedDifficulty = viewModel.selectedDifficulty
+    scoreViewModel.resetHighScore()
     NavHost(navController = navController, startDestination = MainMenu.Menu.name) {
         composable(MainMenu.Menu.name) {
             MainMenuScreen(

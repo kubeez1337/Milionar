@@ -11,7 +11,7 @@ import java.io.File
 
 class ScoreManager(private val context: Context) {
     private val fileName = "scores.json"
-
+    var highScore = 0
     fun saveScore(score : Score) {
         val scores = loadScores().toMutableList()
         scores.add(score)
@@ -25,6 +25,14 @@ class ScoreManager(private val context: Context) {
     fun createNotification(title: String, message: String) {
         val notificationHelper = NotificationHelper(context)
         notificationHelper.createNotification(title, message)
+    }
+    fun reloadHighScore(){
+        var listt = loadScores()
+        if (listt.isNotEmpty()){
+        highScore = listt[0].score}
+    }
+    fun getHighScore(): Int {
+        return highScore
     }
 
     fun loadScores(): List<Score> {
