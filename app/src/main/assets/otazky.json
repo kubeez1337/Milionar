@@ -83,7 +83,7 @@
     "id": 11,
     "question": "Koľko je 25 + 17?",
     "options": ["40", "41", "42", "43"],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "category": "Matematika",
     "difficulty": "Stredna"
   },
@@ -756,5 +756,205 @@
     "correctAnswer": 1,
     "category": "Geografia",
     "difficulty": "Lahka"
+  },
+  {
+    "id": 96,
+    "question": "Čo je HTML?",
+    "options": ["Programovací jazyk", "Značkovací jazyk", "Operačný systém", "Hardvér"],
+    "correctAnswer": 1,
+    "category": "Informatika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 97,
+    "question": "Aký je plný názov skratky CPU?",
+    "options": ["Central Processing Unit", "Central Performance Unit", "Central Program Unit", "Central Power Unit"],
+    "correctAnswer": 0,
+    "category": "Informatika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 98,
+    "question": "Ktorý z nasledujúcich je open-source operačný systém?",
+    "options": ["Windows", "MacOS", "Linux", "iOS"],
+    "correctAnswer": 2,
+    "category": "Informatika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 99,
+    "question": "Čo je RAM?",
+    "options": ["Trvalá pamäť", "Dočasná pamäť", "Externá pamäť", "Záložná pamäť"],
+    "correctAnswer": 1,
+    "category": "Informatika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 100,
+    "question": "Ktorý jazyk sa používa na štýlovanie webových stránok?",
+    "options": ["HTML", "Python", "CSS", "Java"],
+    "correctAnswer": 2,
+    "category": "Informatika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 101,
+    "question": "Čo je IP adresa?",
+    "options": ["Identifikačné číslo", "Internetový protokol", "Informačná pamäť", "Interná platforma"],
+    "correctAnswer": 1,
+    "category": "Informatika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 102,
+    "question": "Aký je plný názov skratky USB?",
+    "options": ["Universal Serial Bus", "Universal System Bus", "Unified Serial Bus", "Unified System Bus"],
+    "correctAnswer": 0,
+    "category": "Informatika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 103,
+    "question": "Ktorý z nasledujúcich je databázový systém?",
+    "options": ["MySQL", "HTML", "Python", "C++"],
+    "correctAnswer": 0,
+    "category": "Informatika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 104,
+    "question": "Čo znamená skratka 'www'?",
+    "options": ["World Wide Web", "Wide World Web", "Web World Wide", "Wide Web World"],
+    "correctAnswer": 0,
+    "category": "Informatika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 105,
+    "question": "Ktorý jazyk sa používa na programovanie aplikácií pre Android?",
+    "options": ["Swift", "Kotlin", "Ruby", "PHP"],
+    "correctAnswer": 1,
+    "category": "Informatika",
+    "difficulty": "Lahka"
+  },
+  {
+    "id": 106,
+    "question": "Čo je to API?",
+    "options": ["Application Programming Interface", "Application Performance Interface", "Application Programming Integration", "Application Performance Integration"],
+    "correctAnswer": 0,
+    "category": "Informatika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 107,
+    "question": "Ktorý algoritmus sa používa na šifrovanie?",
+    "options": ["AES", "FTP", "HTTP", "SMTP"],
+    "correctAnswer": 0,
+    "category": "Informatika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 108,
+    "question": "Ktorý z nasledujúcich je nízkoúrovňový programovací jazyk?",
+    "options": ["Java", "Python", "Assembly", "Ruby"],
+    "correctAnswer": 2,
+    "category": "Informatika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 109,
+    "question": "Čo je cloud computing?",
+    "options": ["Fyzické úložisko", "Online úložisko", "Programovací jazyk", "Sieťový protokol"],
+    "correctAnswer": 1,
+    "category": "Informatika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 110,
+    "question": "Ktorý protokol sa používa na zabezpečenú komunikáciu cez internet?",
+    "options": ["HTTP", "HTTPS", "FTP", "SMTP"],
+    "correctAnswer": 1,
+    "category": "Informatika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 111,
+    "question": "Ktorá spoločnosť vyvinula operačný systém Android?",
+    "options": ["Apple", "Microsoft", "Google", "Amazon"],
+    "correctAnswer": 2,
+    "category": "Informatika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 112,
+    "question": "Čo znamená skratka GUI?",
+    "options": ["Graphical User Interface", "General User Interface", "Global User Interface", "Generated User Interface"],
+    "correctAnswer": 0,
+    "category": "Informatika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 113,
+    "question": "Ktorý jazyk je často používaný na analýzu dát?",
+    "options": ["Java", "R", "C#", "Swift"],
+    "correctAnswer": 1,
+    "category": "Informatika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 114,
+    "question": "Čo je to blockchain?",
+    "options": ["Databázový systém", "Kryptografický protokol", "Distribuovaná databáza", "Sieťový protokol"],
+    "correctAnswer": 2,
+    "category": "Informatika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 115,
+    "question": "Ktorý z nasledujúcich je framework pre JavaScript?",
+    "options": ["Django", "Spring", "React", "Laravel"],
+    "correctAnswer": 2,
+    "category": "Informatika",
+    "difficulty": "Stredna"
+  },
+  {
+    "id": 116,
+    "question": "Kto je považovaný za otca počítačovej vedy?",
+    "options": ["Charles Babbage", "Alan Turing", "Bill Gates", "Steve Jobs"],
+    "correctAnswer": 1,
+    "category": "Informatika",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 117,
+    "question": "Čo je to machine learning?",
+    "options": ["Algoritmus", "Programovací jazyk", "Technika umelej inteligencie", "Databázový systém"],
+    "correctAnswer": 2,
+    "category": "Informatika",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 118,
+    "question": "Ktorý z nasledujúcich je distribučný systém pre verziovanie zdrojového kódu?",
+    "options": ["Git", "Subversion", "Mercurial", "Všetky vyššie uvedené"],
+    "correctAnswer": 3,
+    "category": "Informatika",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 119,
+    "question": "Ktorý jazyk sa používa pre vývoj iOS aplikácií?",
+    "options": ["Java", "Kotlin", "Swift", "C#"],
+    "correctAnswer": 2,
+    "category": "Informatika",
+    "difficulty": "Tazka"
+  },
+  {
+    "id": 120,
+    "question": "Ktorý z nasledujúcich je NoSQL databáza?",
+    "options": ["MySQL", "PostgreSQL", "MongoDB", "SQLite"],
+    "correctAnswer": 2,
+    "category": "Informatika",
+    "difficulty": "Tazka"
   }
 ]
