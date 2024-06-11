@@ -232,8 +232,8 @@ fun vypisPole(viewModel: GameViewModel, navigator: NavController) {
                 viewModel.fieldToHide()
                 viewModel.saveScore(meno, score)
                 viewModel.resetScore()
-                //viewModel.resetQuestion()
                 navigator.navigate(MainMenu.Menu.name)
+                //viewModel.resetQuestion()
             }, colors = ButtonDefaults.buttonColors(Color.DarkGray)
         ) {
             Text("OK")

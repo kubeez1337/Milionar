@@ -51,6 +51,7 @@ android {
 }
 
 dependencies {
+
     implementation("androidx.compose.material:material:1.6.7")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
     implementation(libs.androidx.core.ktx)

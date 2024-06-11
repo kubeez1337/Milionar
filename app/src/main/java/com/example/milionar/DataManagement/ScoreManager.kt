@@ -1,6 +1,9 @@
 package com.example.milionar.DataManagement
 
+import android.app.NotificationManager
 import android.content.Context
+import androidx.core.app.NotificationCompat
+import com.example.milionar.NotificationHelper
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -18,7 +21,10 @@ class ScoreManager(private val context: Context) {
         }
         val json = Json.encodeToString(scores)
         File(context.filesDir, fileName).writeText(json)
-        val halo = 0
+    }
+    fun createNotification(title: String, message: String) {
+        val notificationHelper = NotificationHelper(context)
+        notificationHelper.createNotification(title, message)
     }
 
     fun loadScores(): List<Score> {
